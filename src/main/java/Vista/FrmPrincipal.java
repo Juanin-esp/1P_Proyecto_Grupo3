@@ -1,14 +1,7 @@
 package Vista;
-
-import Controlador.Controlador;
-
-public class PanelPrincipal extends javax.swing.JFrame {
-    private Controlador controlador;
-    public PanelPrincipal() {
+public class FrmPrincipal extends javax.swing.JFrame {
+    public FrmPrincipal() {
         initComponents();
-    }
-    public void setControlador(Controlador controlador) {
-        this.controlador = controlador;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -715,15 +708,15 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-        controlador.playActual();
+
     }//GEN-LAST:event_btnPlayActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        controlador.anterior();
+
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        controlador.siguiente();
+
     }//GEN-LAST:event_btnNextActionPerformed
 
 
@@ -731,18 +724,18 @@ public class PanelPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPlay;
-    private javax.swing.JButton btnPrev;
+    public javax.swing.JButton btnNext;
+    public javax.swing.JButton btnPlay;
+    public javax.swing.JButton btnPrev;
     private javax.swing.JButton btnRadio;
-    private javax.swing.JButton btnRepeat;
-    private javax.swing.JButton btnShuffle;
-    private javax.swing.JButton btnVolume;
+    public javax.swing.JButton btnRepeat;
+    public javax.swing.JButton btnShuffle;
+    public javax.swing.JButton btnVolume;
     private javax.swing.JPanel cardPlaylist1;
     private javax.swing.JPanel cardPlaylist2;
     private javax.swing.JPanel cardPlaylist3;
     private javax.swing.JPanel cardPlaylist5;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -763,8 +756,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblImagen9;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblSaludo;
-    private javax.swing.JLabel lblSongImage;
-    private javax.swing.JLabel lblSongTitle;
+    public javax.swing.JLabel lblSongImage;
+    public javax.swing.JLabel lblSongTitle;
     private javax.swing.JLabel lblSubtitulo;
     private javax.swing.JLabel lblSubtitulo1;
     private javax.swing.JLabel lblSubtitulo2;
@@ -773,8 +766,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblSubtitulo5;
     private javax.swing.JLabel lblSubtitulo6;
     private javax.swing.JLabel lblSubtitulo7;
-    private javax.swing.JLabel lblTimeEnd;
-    private javax.swing.JLabel lblTimeStart;
+    public javax.swing.JLabel lblTimeEnd;
+    public javax.swing.JLabel lblTimeStart;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTitulo3;
     private javax.swing.JLabel lblTitulo4;
@@ -787,7 +780,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelContenido;
     private javax.swing.JPanel panelPlayer;
     private javax.swing.JPanel panelSidebar;
-    private javax.swing.JSlider sliderProgress;
-    private javax.swing.JSlider sliderVolume;
+    public javax.swing.JSlider sliderProgress;
+    public javax.swing.JSlider sliderVolume;
     // End of variables declaration//GEN-END:variables
 }
