@@ -4,6 +4,8 @@ import Modelo.*;
 import Controlador.Controlador;
 import Vista.PanelPrincipal;
 import javafx.embed.swing.JFXPanel;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
         new JFXPanel();
