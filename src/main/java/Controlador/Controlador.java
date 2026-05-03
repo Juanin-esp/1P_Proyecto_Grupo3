@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Cancion;
 import Modelo.Playlist;
+import Modelo.Validaciones;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -14,14 +15,14 @@ public class Controlador {
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
+    public MediaPlayer getPlayer() {
+        return player;
+    }
     
     public void playActual() {
         Cancion actual = playlist.getActual();
 
-        if (actual == null) {
-            System.out.println("Playlist vacia");
-            return;
-        }
+        if (Validaciones.playlistVacia(actual)) return;
 
         reproducir(actual);
     }
@@ -48,17 +49,16 @@ public class Controlador {
 
         Platform.runLater(() -> {
             try {
-                // Detener reproducción actual
-                if (player != null) {
+
+                if (Validaciones.playerValido(player)) {
                     player.stop();
                 }
 
                 String recurso = cancion.getRuta();
                 var url = getClass().getResource(recurso);
 
-                // Validación crítica
-                if (url == null) {
-                    System.out.println("No se encontro el archivo: " + recurso);
+                if (!Validaciones.recursoValido(url)) {
+                    System.out.println("Archivo no encontrado: " + recurso);
                     return;
                 }
 
@@ -67,8 +67,11 @@ public class Controlador {
                 Media media = new Media(ruta);
                 player = new MediaPlayer(media);
 
-                // Auto siguiente
-                player.setOnEndOfMedia(() -> siguiente());
+                player.setOnEndOfMedia(this::siguiente);
+
+                player.setOnReady(() -> {
+                    System.out.println("Duración: " + player.getTotalDuration().toSeconds());
+                });
 
                 player.play();
 
@@ -78,22 +81,23 @@ public class Controlador {
         });
     }
     
+    public void reproducirDirecto(Cancion cancion) {
+        reproducir(cancion);
+    }
+    
     public void pause() {
-        if (player != null) {
-            player.pause();
-        }
+        if (!Validaciones.playerValido(player)) return;
+        player.pause();
     }
 
     public void stop() {
-        if (player != null) {
-            player.stop();
-        }
+        if (!Validaciones.playerValido(player)) return;
+        player.stop();
     }
     
     public void setVolumen(double volumen) {
-        if (player != null) {
-            player.setVolume(volumen); // rango 0.0 a 1.0
-        }
+        if (!Validaciones.playerValido(player)) return;
+        player.setVolume(volumen);
     }
     
     //Preparado para despues
