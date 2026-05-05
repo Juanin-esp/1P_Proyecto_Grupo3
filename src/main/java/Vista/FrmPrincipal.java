@@ -23,7 +23,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         panelContenido = new javax.swing.JPanel();
         lblSaludo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         cardPlaylist1 = new javax.swing.JPanel();
         lblTitulo1 = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
@@ -40,23 +39,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblImagen11 = new javax.swing.JLabel();
         lblTitulo5 = new javax.swing.JLabel();
         lblSubtitulo3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        lblImagen13 = new javax.swing.JLabel();
-        lblTitulo6 = new javax.swing.JLabel();
-        lblSubtitulo4 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        lblImagen14 = new javax.swing.JLabel();
-        lblTitulo7 = new javax.swing.JLabel();
-        lblSubtitulo5 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         lblImagen15 = new javax.swing.JLabel();
         lblTitulo8 = new javax.swing.JLabel();
         lblSubtitulo6 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        lblImagen14 = new javax.swing.JLabel();
+        lblTitulo7 = new javax.swing.JLabel();
+        lblSubtitulo5 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         lblImagen16 = new javax.swing.JLabel();
         lblTitulo9 = new javax.swing.JLabel();
         lblSubtitulo7 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        lblImagen13 = new javax.swing.JLabel();
+        lblTitulo6 = new javax.swing.JLabel();
+        lblSubtitulo4 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
         panelPlayer = new javax.swing.JPanel();
         lblSongImage = new javax.swing.JLabel();
         lblSongTitle = new javax.swing.JLabel();
@@ -83,7 +82,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(0, 204, 51));
-        lblLogo.setText("Spotify");
+        lblLogo.setText("Speetinfy");
 
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
@@ -157,7 +156,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(btnCrearPlaylist))
                     .addGroup(panelSidebarLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(47, 47, 47)
                         .addComponent(lblLogo)))
                 .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +168,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         panelSidebarLayout.setVerticalGroup(
             panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSidebarLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicio)
                     .addComponent(btnBuscar))
@@ -203,383 +202,161 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 4, 10, 10));
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cardPlaylist1.setBackground(new java.awt.Color(28, 28, 28));
         cardPlaylist1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cardPlaylist1.setPreferredSize(new java.awt.Dimension(150, 150));
+        cardPlaylist1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo1.setText("MEMENTO");
+        cardPlaylist1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo.setText("RE:ZERO");
+        cardPlaylist1.add(lblSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
+        cardPlaylist1.add(lblImagen12, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
 
-        javax.swing.GroupLayout cardPlaylist1Layout = new javax.swing.GroupLayout(cardPlaylist1);
-        cardPlaylist1.setLayout(cardPlaylist1Layout);
-        cardPlaylist1Layout.setHorizontalGroup(
-            cardPlaylist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardPlaylist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(cardPlaylist1Layout.createSequentialGroup()
-                        .addGroup(cardPlaylist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo1)
-                            .addComponent(lblSubtitulo))
-                        .addGap(0, 73, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        cardPlaylist1Layout.setVerticalGroup(
-            cardPlaylist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardPlaylist1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen12, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo))
-        );
+        jPanel2.add(cardPlaylist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 160));
 
         cardPlaylist2.setBackground(new java.awt.Color(28, 28, 28));
         cardPlaylist2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cardPlaylist2.setPreferredSize(new java.awt.Dimension(150, 150));
+        cardPlaylist2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblImagen9.setText("jLabel2");
+        cardPlaylist2.add(lblImagen9, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
 
         lblTitulo3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo3.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo3.setText("lblTitulo");
+        cardPlaylist2.add(lblTitulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo1.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo1.setText("lblSubtitulo");
+        cardPlaylist2.add(lblSubtitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
 
-        javax.swing.GroupLayout cardPlaylist2Layout = new javax.swing.GroupLayout(cardPlaylist2);
-        cardPlaylist2.setLayout(cardPlaylist2Layout);
-        cardPlaylist2Layout.setHorizontalGroup(
-            cardPlaylist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardPlaylist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(cardPlaylist2Layout.createSequentialGroup()
-                        .addGroup(cardPlaylist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo3)
-                            .addComponent(lblSubtitulo1))
-                        .addGap(0, 71, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        cardPlaylist2Layout.setVerticalGroup(
-            cardPlaylist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSubtitulo1)
-                .addContainerGap())
-        );
+        jPanel2.add(cardPlaylist2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 160));
 
         cardPlaylist3.setBackground(new java.awt.Color(28, 28, 28));
         cardPlaylist3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cardPlaylist3.setPreferredSize(new java.awt.Dimension(150, 150));
+        cardPlaylist3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblImagen10.setText("jLabel2");
+        cardPlaylist3.add(lblImagen10, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 124, 99));
 
         lblTitulo4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo4.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo4.setText("lblTitulo");
+        cardPlaylist3.add(lblTitulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo2.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo2.setText("lblSubtitulo");
+        cardPlaylist3.add(lblSubtitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
 
-        javax.swing.GroupLayout cardPlaylist3Layout = new javax.swing.GroupLayout(cardPlaylist3);
-        cardPlaylist3.setLayout(cardPlaylist3Layout);
-        cardPlaylist3Layout.setHorizontalGroup(
-            cardPlaylist3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardPlaylist3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardPlaylist3Layout.createSequentialGroup()
-                        .addGroup(cardPlaylist3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo4)
-                            .addComponent(lblSubtitulo2))
-                        .addContainerGap(77, Short.MAX_VALUE))
-                    .addGroup(cardPlaylist3Layout.createSequentialGroup()
-                        .addComponent(lblImagen10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))))
-        );
-        cardPlaylist3Layout.setVerticalGroup(
-            cardPlaylist3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo2))
-        );
+        jPanel2.add(cardPlaylist3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 160));
 
         cardPlaylist5.setBackground(new java.awt.Color(28, 28, 28));
         cardPlaylist5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cardPlaylist5.setPreferredSize(new java.awt.Dimension(150, 150));
+        cardPlaylist5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblImagen11.setText("jLabel2");
+        cardPlaylist5.add(lblImagen11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 124, 99));
 
         lblTitulo5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo5.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo5.setText("lblTitulo");
+        cardPlaylist5.add(lblTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo3.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo3.setText("lblSubtitulo");
+        cardPlaylist5.add(lblSubtitulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
 
-        javax.swing.GroupLayout cardPlaylist5Layout = new javax.swing.GroupLayout(cardPlaylist5);
-        cardPlaylist5.setLayout(cardPlaylist5Layout);
-        cardPlaylist5Layout.setHorizontalGroup(
-            cardPlaylist5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardPlaylist5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardPlaylist5Layout.createSequentialGroup()
-                        .addGroup(cardPlaylist5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo5)
-                            .addComponent(lblSubtitulo3))
-                        .addContainerGap(77, Short.MAX_VALUE))
-                    .addGroup(cardPlaylist5Layout.createSequentialGroup()
-                        .addComponent(lblImagen11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))))
-        );
-        cardPlaylist5Layout.setVerticalGroup(
-            cardPlaylist5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPlaylist5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo3))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(cardPlaylist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cardPlaylist2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cardPlaylist3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cardPlaylist5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardPlaylist2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(cardPlaylist1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(cardPlaylist3, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(cardPlaylist5, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jPanel2.add(jPanel4);
-
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
-        jPanel16.setBackground(new java.awt.Color(28, 28, 28));
-        jPanel16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel16.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        lblImagen13.setText("jLabel2");
-
-        lblTitulo6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTitulo6.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo6.setText("lblTitulo");
-
-        lblSubtitulo4.setForeground(new java.awt.Color(179, 179, 179));
-        lblSubtitulo4.setText("lblSubtitulo");
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo6)
-                            .addComponent(lblSubtitulo4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen13, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo4))
-        );
-
-        jPanel17.setBackground(new java.awt.Color(28, 28, 28));
-        jPanel17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel17.setPreferredSize(new java.awt.Dimension(150, 150));
-
-        lblImagen14.setText("jLabel2");
-
-        lblTitulo7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTitulo7.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo7.setText("lblTitulo");
-
-        lblSubtitulo5.setForeground(new java.awt.Color(179, 179, 179));
-        lblSubtitulo5.setText("lblSubtitulo");
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo7)
-                            .addComponent(lblSubtitulo5))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen14, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo5))
-        );
+        jPanel2.add(cardPlaylist5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 160));
 
         jPanel18.setBackground(new java.awt.Color(28, 28, 28));
         jPanel18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel18.setPreferredSize(new java.awt.Dimension(150, 150));
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblImagen15.setText("jLabel2");
+        jPanel18.add(lblImagen15, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
 
         lblTitulo8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo8.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo8.setText("lblTitulo");
+        jPanel18.add(lblTitulo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo6.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo6.setText("lblSubtitulo");
+        jPanel18.add(lblSubtitulo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo8)
-                            .addComponent(lblSubtitulo6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen15, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo6))
-        );
+        jPanel2.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, -1, 155));
+
+        jPanel17.setBackground(new java.awt.Color(28, 28, 28));
+        jPanel17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel17.setPreferredSize(new java.awt.Dimension(150, 150));
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblImagen14.setText("jLabel2");
+        jPanel17.add(lblImagen14, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
+
+        lblTitulo7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTitulo7.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo7.setText("lblTitulo");
+        jPanel17.add(lblTitulo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
+
+        lblSubtitulo5.setForeground(new java.awt.Color(179, 179, 179));
+        lblSubtitulo5.setText("lblSubtitulo");
+        jPanel17.add(lblSubtitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
+
+        jPanel2.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, 155));
 
         jPanel19.setBackground(new java.awt.Color(28, 28, 28));
         jPanel19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel19.setPreferredSize(new java.awt.Dimension(150, 150));
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblImagen16.setText("jLabel2");
+        jPanel19.add(lblImagen16, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
 
         lblTitulo9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTitulo9.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo9.setText("lblTitulo");
+        jPanel19.add(lblTitulo9, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
 
         lblSubtitulo7.setForeground(new java.awt.Color(179, 179, 179));
         lblSubtitulo7.setText("lblSubtitulo");
+        jPanel19.add(lblSubtitulo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagen16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo9)
-                            .addComponent(lblSubtitulo7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImagen16, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblSubtitulo7))
-        );
+        jPanel2.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, 155));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        jPanel16.setBackground(new java.awt.Color(28, 28, 28));
+        jPanel16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel16.setPreferredSize(new java.awt.Dimension(150, 150));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.add(jPanel1);
+        lblImagen13.setText("jLabel2");
+        jPanel16.add(lblImagen13, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 132, 99));
+
+        lblTitulo6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTitulo6.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo6.setText("lblTitulo");
+        jPanel16.add(lblTitulo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 114, -1, -1));
+
+        lblSubtitulo4.setForeground(new java.awt.Color(179, 179, 179));
+        lblSubtitulo4.setText("lblSubtitulo");
+        jPanel16.add(lblSubtitulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 136, -1, -1));
+
+        jPanel2.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 155));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FONDOverde.jpeg"))); // NOI18N
+        lblFondo.setText("IMAGEN");
+        jPanel2.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 0, 680, 350));
 
         javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
         panelContenido.setLayout(panelContenidoLayout);
@@ -588,9 +365,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panelContenidoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSaludo))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         panelContenidoLayout.setVerticalGroup(
             panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,8 +375,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(lblSaludo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel3.add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 730, 440));
@@ -711,7 +488,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblVolume.setText("50");
         panelPlayer.add(lblVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 30, 20));
 
-        jPanel3.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 900, 130));
+        jPanel3.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 900, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -769,16 +546,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel cardPlaylist3;
     private javax.swing.JPanel cardPlaylist5;
     public javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBiblioteca;
+    public javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblImagen10;
     private javax.swing.JLabel lblImagen11;
     private javax.swing.JLabel lblImagen12;

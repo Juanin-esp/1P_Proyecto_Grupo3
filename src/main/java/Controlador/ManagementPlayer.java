@@ -33,6 +33,13 @@ public class ManagementPlayer implements ActionListener {
         cargarLista();
     }
     
+    private void initBotones() {
+        vista.btnPlay.addActionListener(this);
+        vista.btnNext.addActionListener(this);
+        vista.btnPrev.addActionListener(this);
+        vista.btnMute.addActionListener(this);
+    }
+    
     private void initLista() {
         vista.listPlaylists.addListSelectionListener(e -> onSeleccionCancion(e));
     }
@@ -54,6 +61,7 @@ public class ManagementPlayer implements ActionListener {
         vista.sliderProgress.setMinimum(0);
         vista.sliderProgress.setMaximum(100);
         vista.sliderProgress.setValue(0);
+        aplicarEstiloSlider(vista.sliderProgress);
 
         vista.sliderProgress.addChangeListener(e -> onSliderChange());
     }
@@ -71,12 +79,10 @@ public class ManagementPlayer implements ActionListener {
 
         player.seek(Duration.seconds(total * porcentaje));
     }
-    
-    private void initBotones() {
-        vista.btnPlay.addActionListener(this);
-        vista.btnNext.addActionListener(this);
-        vista.btnPrev.addActionListener(this);
-        vista.btnMute.addActionListener(this);
+    private void aplicarEstiloSlider(javax.swing.JSlider slider) {
+        slider.setUI(new Vista.ModernSliderUI(slider));
+        slider.setOpaque(false);
+        slider.setFocusable(false);
     }
     
     private void initProgressBar() {
@@ -91,7 +97,7 @@ public class ManagementPlayer implements ActionListener {
         vista.sliderVolume.setMinimum(0);
         vista.sliderVolume.setMaximum(100);
         vista.sliderVolume.setValue((int)(controlador.getVolumenActual()*100));
-
+        aplicarEstiloSlider(vista.sliderVolume);
         vista.sliderVolume.addChangeListener(e -> onVolumeChange());
     }
     
