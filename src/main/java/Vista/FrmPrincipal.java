@@ -19,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnAbrirPlaylist = new javax.swing.JButton();
         btnCrearPlaylist = new javax.swing.JButton();
         btnEliminarPlaylist = new javax.swing.JButton();
+        txtBuscarCancion = new javax.swing.JTextField();
         panelContenido = new javax.swing.JPanel();
         lblSaludo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -69,7 +70,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblTimeStart = new javax.swing.JLabel();
         lblTimeEnd = new javax.swing.JLabel();
         sliderVolume = new javax.swing.JSlider();
-        btnVolume = new javax.swing.JButton();
+        btnMute = new javax.swing.JButton();
+        btnPause = new javax.swing.JButton();
+        lblVolume = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +125,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnEliminarPlaylist.setBorderPainted(false);
         btnEliminarPlaylist.setContentAreaFilled(false);
 
+        txtBuscarCancion.setEditable(false);
+        txtBuscarCancion.setBackground(new java.awt.Color(28, 28, 28));
+        txtBuscarCancion.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscarCancion.setText("Buscar...");
+        txtBuscarCancion.setBorder(null);
+
         javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
         panelSidebar.setLayout(panelSidebarLayout);
         panelSidebarLayout.setHorizontalGroup(
@@ -151,6 +160,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(lblLogo)))
                 .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSidebarLayout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(26, Short.MAX_VALUE)))
         );
         panelSidebarLayout.setVerticalGroup(
             panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,10 +175,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicio)
                     .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(lblBiblioteca)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrearPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,6 +186,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(btnAbrirPlaylist)
                     .addComponent(btnEliminarPlaylist))
                 .addContainerGap())
+            .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSidebarLayout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(343, Short.MAX_VALUE)))
         );
 
         jPanel3.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 440));
@@ -596,7 +615,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblSongTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblSongTitle.setText("The Druiditor");
-        panelPlayer.add(lblSongTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 53, -1, -1));
+        panelPlayer.add(lblSongTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Artistas");
@@ -621,7 +640,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnPlay.setBackground(new java.awt.Color(29, 185, 84));
         btnPlay.setForeground(new java.awt.Color(29, 185, 84));
-        btnPlay.setText("▶ / ⏸");
+        btnPlay.setText("▶ ");
         btnPlay.setBorderPainted(false);
         btnPlay.setContentAreaFilled(false);
         btnPlay.addActionListener(new java.awt.event.ActionListener() {
@@ -629,7 +648,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnPlayActionPerformed(evt);
             }
         });
-        panelPlayer.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 50, -1, -1));
+        panelPlayer.add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 50, -1));
 
         btnNext.setForeground(new java.awt.Color(255, 255, 255));
         btnNext.setText("⏭");
@@ -646,8 +665,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnRepeat.setText("🔁");
         btnRepeat.setBorderPainted(false);
         btnRepeat.setContentAreaFilled(false);
-        panelPlayer.add(btnRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(536, 50, -1, -1));
+        panelPlayer.add(btnRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
 
+        sliderProgress.setBackground(new java.awt.Color(0, 0, 0));
         sliderProgress.setForeground(new java.awt.Color(29, 185, 84));
         panelPlayer.add(sliderProgress, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 78, 329, -1));
 
@@ -659,14 +679,37 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblTimeEnd.setText("3:45");
         panelPlayer.add(lblTimeEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 79, 31, -1));
 
+        sliderVolume.setBackground(new java.awt.Color(0, 0, 0));
         sliderVolume.setForeground(new java.awt.Color(29, 185, 84));
-        panelPlayer.add(sliderVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 110, -1));
+        panelPlayer.add(sliderVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 110, -1));
 
-        btnVolume.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolume.setText("🔊");
-        btnVolume.setBorderPainted(false);
-        btnVolume.setContentAreaFilled(false);
-        panelPlayer.add(btnVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, -1, -1));
+        btnMute.setForeground(new java.awt.Color(255, 255, 255));
+        btnMute.setText("🔊");
+        btnMute.setBorderPainted(false);
+        btnMute.setContentAreaFilled(false);
+        btnMute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMuteActionPerformed(evt);
+            }
+        });
+        panelPlayer.add(btnMute, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 60, -1));
+
+        btnPause.setBackground(new java.awt.Color(29, 185, 84));
+        btnPause.setForeground(new java.awt.Color(29, 185, 84));
+        btnPause.setText("⏸");
+        btnPause.setBorderPainted(false);
+        btnPause.setContentAreaFilled(false);
+        btnPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPauseActionPerformed(evt);
+            }
+        });
+        panelPlayer.add(btnPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
+
+        lblVolume.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblVolume.setForeground(new java.awt.Color(29, 185, 84));
+        lblVolume.setText("50");
+        panelPlayer.add(lblVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 30, 20));
 
         jPanel3.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 900, 130));
 
@@ -698,6 +741,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNextActionPerformed
 
+    private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPauseActionPerformed
+
+    private void btnMuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMuteActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -706,12 +757,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearPlaylist;
     private javax.swing.JButton btnEliminarPlaylist;
     private javax.swing.JButton btnInicio;
+    public javax.swing.JButton btnMute;
     public javax.swing.JButton btnNext;
+    public javax.swing.JButton btnPause;
     public javax.swing.JButton btnPlay;
     public javax.swing.JButton btnPrev;
     public javax.swing.JButton btnRepeat;
     public javax.swing.JButton btnShuffle;
-    public javax.swing.JButton btnVolume;
     private javax.swing.JPanel cardPlaylist1;
     private javax.swing.JPanel cardPlaylist2;
     private javax.swing.JPanel cardPlaylist3;
@@ -757,11 +809,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo7;
     private javax.swing.JLabel lblTitulo8;
     private javax.swing.JLabel lblTitulo9;
+    public javax.swing.JLabel lblVolume;
     public javax.swing.JList listPlaylists;
     private javax.swing.JPanel panelContenido;
     private javax.swing.JPanel panelPlayer;
     private javax.swing.JPanel panelSidebar;
     public javax.swing.JSlider sliderProgress;
     public javax.swing.JSlider sliderVolume;
+    private javax.swing.JTextField txtBuscarCancion;
     // End of variables declaration//GEN-END:variables
 }

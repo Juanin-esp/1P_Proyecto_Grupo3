@@ -28,6 +28,7 @@ public class ManagementPlayer implements ActionListener {
         initLista();
         initSlider();
         initProgressBar();
+        initVolume();
 
         cargarLista();
     }
@@ -75,6 +76,7 @@ public class ManagementPlayer implements ActionListener {
         vista.btnPlay.addActionListener(this);
         vista.btnNext.addActionListener(this);
         vista.btnPrev.addActionListener(this);
+        vista.btnMute.addActionListener(this);
     }
     
     private void initProgressBar() {
@@ -84,6 +86,25 @@ public class ManagementPlayer implements ActionListener {
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+    }
+    private void initVolume() {
+        vista.sliderVolume.setMinimum(0);
+        vista.sliderVolume.setMaximum(100);
+        vista.sliderVolume.setValue((int)(controlador.getVolumenActual()*100));
+
+        vista.sliderVolume.addChangeListener(e -> onVolumeChange());
+    }
+    
+    private void onVolumeChange() {
+        int valor = vista.sliderVolume.getValue();
+        double volumen = valor / 100.0;
+        vista.lblVolume.setText(valor+"");
+        if (controlador.isMute() && volumen > 0) {
+            controlador.desmutearDirecto(volumen);
+        } else {
+            controlador.setVolumen(volumen);
+        }
+        actualizarIconoVolumen();
     }
     
     private void actualizarProgreso() {
@@ -101,7 +122,16 @@ public class ManagementPlayer implements ActionListener {
         vista.lblTimeStart.setText(Validaciones.formatTime(actual));
         vista.lblTimeEnd.setText(Validaciones.formatTime(total));
     }
-
+    
+    private void actualizarIconoVolumen() {
+        if (controlador.isMute() || controlador.getVolumenActual() == 0) {
+            //vista.btnMute.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mute.png")));
+            vista.btnMute.setText("🔇");
+        } else {
+            //vista.btnMute.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/volume.png")));
+            vista.btnMute.setText("🔊");
+        }
+}
     private void cargarLista() {
 
         DefaultListModel<Cancion> modelo = new DefaultListModel<>();
@@ -135,6 +165,13 @@ public class ManagementPlayer implements ActionListener {
 
         if (e.getSource() == vista.btnPrev) {
             controlador.anterior();
+        }
+        
+        if (e.getSource() == vista.btnMute) {
+            controlador.toggleMute();
+            int valor = (int)(controlador.getVolumenActual() * 100);
+            vista.sliderVolume.setValue(valor);
+            actualizarIconoVolumen();
         }
     }
     

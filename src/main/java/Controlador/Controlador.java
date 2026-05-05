@@ -11,7 +11,9 @@ public class Controlador {
 
     private Playlist<Cancion> playlist;
     private MediaPlayer player;
-
+    private boolean mute = false;
+    private double volumenAntesMute = 0.5;
+    private double volumenActual = 0.5; // valor inicial (50%)
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
@@ -65,10 +67,13 @@ public class Controlador {
 
                 Media media = new Media(ruta);
                 player = new MediaPlayer(media);
+                
+                player.setVolume(volumenActual);
 
                 player.setOnEndOfMedia(this::siguiente);
 
                 player.setOnReady(() -> {
+                    player.setVolume(volumenActual);
                     System.out.println("Duración: " + player.getTotalDuration().toSeconds());
                 });
 
@@ -95,8 +100,40 @@ public class Controlador {
     }
     
     public void setVolumen(double volumen) {
+        volumenActual = volumen;
         if (!Validaciones.playerValido(player)) return;
-        player.setVolume(volumen);
+        player.setVolume(volumenActual);
+    }
+    
+    public double getVolumenActual() {
+        return volumenActual;
+    }
+    
+    public void toggleMute() {
+        if (!Validaciones.playerValido(player)) return;
+
+        if (!mute) {
+            volumenAntesMute = volumenActual;
+            volumenActual = 0;
+            player.setVolume(0);
+            mute = true;
+        } else {
+            volumenActual = volumenAntesMute;
+            player.setVolume(volumenActual);
+            mute = false;
+        }
+    }
+    
+    public boolean isMute() {
+        return mute;
+    }
+    
+    public void desmutearDirecto(double volumen) {
+        mute = false;
+        volumenActual = volumen;
+        if (Validaciones.playerValido(player)) {
+            player.setVolume(volumen);
+        }
     }
     
     //Preparado para despues

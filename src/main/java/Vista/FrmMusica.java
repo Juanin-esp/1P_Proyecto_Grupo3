@@ -113,19 +113,23 @@ public class FrmMusica extends javax.swing.JFrame {
                         .addComponent(btnRecientes)
                         .addComponent(btnMiMusica)
                         .addComponent(btnEnCurso)
-                        .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblLogo)
-                            .addComponent(txtBuscarSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(panelSidebarLayout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addComponent(lblLogo))))
                 .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(panelSidebarLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(txtBuscarSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSidebarLayout.setVerticalGroup(
             panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSidebarLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtBuscarSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(txtBuscarSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnMiMusica)
                 .addGap(18, 18, 18)
                 .addComponent(btnRecientes)
@@ -457,9 +461,7 @@ public class FrmMusica extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
