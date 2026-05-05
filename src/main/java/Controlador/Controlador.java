@@ -49,7 +49,6 @@ public class Controlador {
 
         Platform.runLater(() -> {
             try {
-
                 if (Validaciones.playerValido(player)) {
                     player.stop();
                 }
