@@ -1,6 +1,7 @@
 package Controlador;
 
 import Vista.FrmPrincipal;
+import Vista.SliderModerno;
 import Modelo.Validaciones;
 import Modelo.Cancion;
 import Modelo.Playlist;
@@ -26,6 +27,7 @@ public class ManagementPlayer implements ActionListener {
 
         initBotones();
         initLista();
+        initSliderGUI();
         initSlider();
         initProgressBar();
         initVolume();
@@ -61,9 +63,12 @@ public class ManagementPlayer implements ActionListener {
         vista.sliderProgress.setMinimum(0);
         vista.sliderProgress.setMaximum(100);
         vista.sliderProgress.setValue(0);
-        aplicarEstiloSlider(vista.sliderProgress);
-
         vista.sliderProgress.addChangeListener(e -> onSliderChange());
+    }
+    
+    private void initSliderGUI() {
+        SliderModerno.aplicar(vista.sliderProgress, SliderModerno.Tipo.PROGRESO);
+        SliderModerno.aplicar(vista.sliderVolume,   SliderModerno.Tipo.VOLUMEN);
     }
     
     private void onSliderChange() {
@@ -79,11 +84,6 @@ public class ManagementPlayer implements ActionListener {
 
         player.seek(Duration.seconds(total * porcentaje));
     }
-    private void aplicarEstiloSlider(javax.swing.JSlider slider) {
-        slider.setUI(new Vista.ModernSliderUI(slider));
-        slider.setOpaque(false);
-        slider.setFocusable(false);
-    }
     
     private void initProgressBar() {
         timeline = new Timeline(
@@ -97,7 +97,6 @@ public class ManagementPlayer implements ActionListener {
         vista.sliderVolume.setMinimum(0);
         vista.sliderVolume.setMaximum(100);
         vista.sliderVolume.setValue((int)(controlador.getVolumenActual()*100));
-        aplicarEstiloSlider(vista.sliderVolume);
         vista.sliderVolume.addChangeListener(e -> onVolumeChange());
     }
     
