@@ -13,7 +13,7 @@ public class Controlador {
     private MediaPlayer player;
     private boolean mute = false;
     private double volumenAntesMute = 0.5;
-    private double volumenActual = 0.5; // valor inicial (50%)
+    private double volumenActual = 0.5;
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
@@ -93,12 +93,20 @@ public class Controlador {
         if (!Validaciones.playerValido(player)) return;
         player.pause();
     }
-
-    public void stop() {
-        if (!Validaciones.playerValido(player)) return;
-        player.stop();
-    }
     
+    public void playOrResumeActual() {
+        Cancion actual = playlist.getActual();
+        if (Validaciones.playlistVacia(actual)) return;
+
+        // Si ya hay player en pausa, solo reanudar
+        if (Validaciones.playerValido(player) && 
+            player.getStatus() == MediaPlayer.Status.PAUSED) {
+            player.play();
+        } else {
+            // Si no hay player o está detenido, recrear y empezar de cero
+            reproducir(actual);
+        }
+    }
     public void setVolumen(double volumen) {
         volumenActual = volumen;
         if (!Validaciones.playerValido(player)) return;

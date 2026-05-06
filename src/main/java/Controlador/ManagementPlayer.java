@@ -40,6 +40,13 @@ public class ManagementPlayer implements ActionListener {
         vista.btnNext.addActionListener(this);
         vista.btnPrev.addActionListener(this);
         vista.btnMute.addActionListener(this);
+        vista.btnPause.addActionListener(this);
+        vista.btnPause.setVisible(false);
+    }
+    
+    private void actualizarBotonesReproduccion(boolean reproduciendo) {
+        vista.btnPlay.setVisible(!reproduciendo);
+        vista.btnPause.setVisible(reproduciendo);
     }
     
     private void initLista() {
@@ -57,6 +64,7 @@ public class ManagementPlayer implements ActionListener {
 
         controlador.reproducirDirecto(seleccionada);
         vista.lblSongTitle.setText(seleccionada.getTitulo());
+        actualizarBotonesReproduccion(true);
     }
     
     private void initSlider() {
@@ -161,15 +169,23 @@ public class ManagementPlayer implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == vista.btnPlay) {
-            controlador.playActual();
+            controlador.playOrResumeActual();
+            actualizarBotonesReproduccion(true);
+        }
+        
+        if (e.getSource() == vista.btnPause) {
+            controlador.pause();
+            actualizarBotonesReproduccion(false);
         }
 
         if (e.getSource() == vista.btnNext) {
             controlador.siguiente();
+            actualizarBotonesReproduccion(true);
         }
 
         if (e.getSource() == vista.btnPrev) {
             controlador.anterior();
+            actualizarBotonesReproduccion(true);
         }
         
         if (e.getSource() == vista.btnMute) {

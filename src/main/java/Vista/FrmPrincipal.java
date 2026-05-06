@@ -288,7 +288,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnPauseActionPerformed(evt);
             }
         });
-        panelPlayer.add(btnPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        panelPlayer.add(btnPause, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 50, -1));
 
         lblVolume.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblVolume.setForeground(new java.awt.Color(29, 185, 84));
