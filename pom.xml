@@ -26,10 +26,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>5.7.0</version> <!-- o una versión 4.x si prefieres -->
+        </dependency>
+
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
             <version>21</version>
         </dependency>
+        
+        <dependency>
+            <groupId>net.jthink</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,4 +50,5 @@
         <exec.mainClass>com.mycompany.p_proyecto_grupo3.App</exec.mainClass>
         <javafx.version>21</javafx.version>
     </properties>
+    <name>1P_Proyecto_Grupo3</name>
 </project>

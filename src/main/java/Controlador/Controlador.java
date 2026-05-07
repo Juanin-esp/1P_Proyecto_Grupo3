@@ -6,6 +6,7 @@ import Modelo.Validaciones;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import java.util.function.Consumer;   // ← nuevo import
 
 public class Controlador {
 
@@ -14,40 +15,43 @@ public class Controlador {
     private boolean mute = false;
     private double volumenAntesMute = 0.5;
     private double volumenActual = 0.5;
+
+    // ── NUEVO: callback que avisa a la UI qué canción suena ──
+    private Consumer<Cancion> onCancionCambiada;
+
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
-    public MediaPlayer getPlayer() {
-        return player;
+
+    // ── NUEVO: setter del callback ──
+    public void setOnCancionCambiada(Consumer<Cancion> callback) {
+        this.onCancionCambiada = callback;
     }
-    
+
+    public MediaPlayer getPlayer() { return player; }
+    public Cancion getCancionActual() { return playlist.getActual(); }
+
     public void playActual() {
         Cancion actual = playlist.getActual();
-
         if (Validaciones.playlistVacia(actual)) return;
-
         reproducir(actual);
     }
 
     public void siguiente() {
         Cancion c = playlist.siguiente();
-
-        if (c != null) {
-            reproducir(c);
-        }
+        if (c != null) reproducir(c);
     }
-    
+
     public void anterior() {
         Cancion c = playlist.anterior();
-
-        if (c != null) {
-            reproducir(c);
-        }
+        if (c != null) reproducir(c);
     }
-    
-    /*Método central de reproducción (CLAVE)
-    Aquí está lo importante: controlar el ciclo de vida del MediaPlayer*/
+
     private void reproducir(Cancion cancion) {
+        // ── NUEVO: notificar a la UI antes de reproducir ──
+        if (onCancionCambiada != null) {
+            Platform.runLater(() -> onCancionCambiada.accept(cancion));
+        }
 
         Platform.runLater(() -> {
             try {
@@ -63,20 +67,14 @@ public class Controlador {
                     return;
                 }
 
-                String ruta = url.toExternalForm();
-
-                Media media = new Media(ruta);
+                Media media = new Media(url.toExternalForm());
                 player = new MediaPlayer(media);
-                
                 player.setVolume(volumenActual);
-
                 player.setOnEndOfMedia(this::siguiente);
-
                 player.setOnReady(() -> {
                     player.setVolume(volumenActual);
                     System.out.println("Duración: " + player.getTotalDuration().toSeconds());
                 });
-
                 player.play();
 
             } catch (Exception e) {
@@ -84,42 +82,44 @@ public class Controlador {
             }
         });
     }
-    
+
     public void reproducirDirecto(Cancion cancion) {
+        // Buscar el nodo de esta canción y mover actual ahí
+        var nodo = playlist.buscar(c -> c == cancion); // comparación por referencia
+        if (nodo != null) {
+            playlist.setActual(nodo);
+        }
         reproducir(cancion);
     }
-    
+
     public void pause() {
         if (!Validaciones.playerValido(player)) return;
         player.pause();
     }
-    
+
     public void playOrResumeActual() {
         Cancion actual = playlist.getActual();
         if (Validaciones.playlistVacia(actual)) return;
 
-        // Si ya hay player en pausa, solo reanudar
-        if (Validaciones.playerValido(player) && 
+        if (Validaciones.playerValido(player) &&
             player.getStatus() == MediaPlayer.Status.PAUSED) {
             player.play();
         } else {
-            // Si no hay player o está detenido, recrear y empezar de cero
             reproducir(actual);
         }
     }
+
     public void setVolumen(double volumen) {
         volumenActual = volumen;
         if (!Validaciones.playerValido(player)) return;
         player.setVolume(volumenActual);
     }
-    
-    public double getVolumenActual() {
-        return volumenActual;
-    }
-    
+
+    public double getVolumenActual() { return volumenActual; }
+    public boolean isMute()          { return mute; }
+
     public void toggleMute() {
         if (!Validaciones.playerValido(player)) return;
-
         if (!mute) {
             volumenAntesMute = volumenActual;
             volumenActual = 0;
@@ -131,37 +131,22 @@ public class Controlador {
             mute = false;
         }
     }
-    
-    public boolean isMute() {
-        return mute;
-    }
-    
+
     public void desmutearDirecto(double volumen) {
         mute = false;
         volumenActual = volumen;
-        if (Validaciones.playerValido(player)) {
-            player.setVolume(volumen);
-        }
+        if (Validaciones.playerValido(player)) player.setVolume(volumen);
     }
-    
-    //Preparado para despues
-    public void shuffle() {
-        // luego conectas con playlist.mezclar()
-    }
-    
-    public void buscarYReproducir(String titulo) {
-        var nodo = playlist.buscar(c ->
-            c.getTitulo().equalsIgnoreCase(titulo)
-        );
 
+    public void shuffle() { }
+
+    public void buscarYReproducir(String titulo) {
+        var nodo = playlist.buscar(c -> c.getTitulo().equalsIgnoreCase(titulo));
         if (nodo != null) {
             playlist.setActual(nodo);
             reproducir(nodo.getDato());
         } else {
             System.out.println("Canción no encontrada");
         }
-
     }
-    
-    
 }

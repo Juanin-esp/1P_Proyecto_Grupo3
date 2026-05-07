@@ -1,6 +1,6 @@
-/Musica/Cancion_de_el_fin_se_acerca.mp3
+/Musica/El_Fin_Se_Acerca.mp3
 /Musica/Facil_de_Engañar.mp3
-/Musica/Los_Enanitos_Verdes_La_Muralla_Verde.mp3
 /Musica/Monster Skillet.mp3
+/Musica/Muralla_Verde.mp3
 /Musica/Stronger_Than_You_Undertale.mp3
 /Musica/Ya llego tilin letra.mp3
