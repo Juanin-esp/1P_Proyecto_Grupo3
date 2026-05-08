@@ -6,32 +6,45 @@ import Modelo.Playlist;
 import Vista.FrmPrincipal;
 import javafx.embed.swing.JFXPanel;
 
-public class ManagementApp {
+public class ControladorPrincipal {
 
     private FrmPrincipal vista;
+
     private Playlist<Cancion> playlist;
+
     private ManagementPlayer playerManager;
 
-    public ManagementApp(FrmPrincipal vista) {
+    public ControladorPrincipal(FrmPrincipal vista) {
+
         this.vista = vista;
 
         initJavaFX();
+
         initModelo();
+
         initControladores();
     }
 
     private void initJavaFX() {
-        new JFXPanel(); // Inicializa JavaFX
+
+        new JFXPanel();
     }
 
     private void initModelo() {
+
         playlist = new Playlist<>();
-        // Escanea carpeta y agrega nuevas canciones
+
         MusicLoader.sincronizarConCarpeta();
-        // Carga desde MongoDB
+
         MusicLoader.cargarDesdeBD(playlist);
     }
+
     private void initControladores() {
-        playerManager = new ManagementPlayer(vista, playlist);
+
+        playerManager =
+                new ManagementPlayer(
+                        vista,
+                        playlist
+                );
     }
 }

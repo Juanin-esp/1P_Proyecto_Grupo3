@@ -1,10 +1,10 @@
 package com.mycompany.p_proyecto_grupo3;
-import Vista.FrmPrincipal;
-import Controlador.ManagementApp;
+import Vista.FrmLogin;
+import Controlador.ControladorLogin;
 public class App {
     public static void main(String[] args) {
-        FrmPrincipal vista = new FrmPrincipal();
-        new ManagementApp(vista);
-        vista.setVisible(true);
+        FrmLogin login = new FrmLogin();
+        new ControladorLogin(login);
+        login.setVisible(true);
     }
 }

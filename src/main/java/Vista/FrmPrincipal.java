@@ -3,8 +3,7 @@ import javax.swing.ImageIcon;
 public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
         initComponents();
-        setIconImage(new ImageIcon(getClass()
-                .getResource("/Imagenes/redes-sociales.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/redes-sociales.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -85,10 +84,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnEliminarPlaylist.setBorderPainted(false);
         btnEliminarPlaylist.setContentAreaFilled(false);
 
-        txtBuscarCancion.setEditable(false);
         txtBuscarCancion.setBackground(new java.awt.Color(28, 28, 28));
         txtBuscarCancion.setForeground(new java.awt.Color(255, 255, 255));
-        txtBuscarCancion.setText("Buscar...");
         txtBuscarCancion.setBorder(null);
 
         javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
