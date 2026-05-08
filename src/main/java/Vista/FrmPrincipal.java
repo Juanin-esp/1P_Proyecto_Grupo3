@@ -1,8 +1,12 @@
 package Vista;
-import Modelo.Cancion;
+import javax.swing.ImageIcon;
 public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal() {
         initComponents();
+        setIconImage(new ImageIcon(getClass()
+                .getResource("/Imagenes/redes-sociales.png")).getImage());
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

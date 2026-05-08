@@ -26,12 +26,11 @@ public class ManagementApp {
 
     private void initModelo() {
         playlist = new Playlist<>();
-        // 🔥 Genera automáticamente el txt
-        MusicLoader.generarTxtDesdeCarpeta();
-        // Luego carga desde txt
-        MusicLoader.cargarDesdeTxt(playlist);
+        // Escanea carpeta y agrega nuevas canciones
+        MusicLoader.sincronizarConCarpeta();
+        // Carga desde MongoDB
+        MusicLoader.cargarDesdeBD(playlist);
     }
-
     private void initControladores() {
         playerManager = new ManagementPlayer(vista, playlist);
     }

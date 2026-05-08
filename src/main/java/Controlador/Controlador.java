@@ -68,15 +68,16 @@ public class Controlador {
                 }
 
                 Media media = new Media(url.toExternalForm());
-                player = new MediaPlayer(media);
-                player.setVolume(volumenActual);
-                player.setOnEndOfMedia(this::siguiente);
-                player.setOnReady(() -> {
-                    player.setVolume(volumenActual);
-                    System.out.println("Duración: " + player.getTotalDuration().toSeconds());
+                MediaPlayer nuevoPlayer = new MediaPlayer(media);
+                nuevoPlayer.setVolume(volumenActual);
+                nuevoPlayer.setOnEndOfMedia(this::siguiente);
+                nuevoPlayer.setOnReady(() -> {
+                    double duracion =nuevoPlayer.getMedia().getDuration().toSeconds();
+                    System.out.println("Duracion: " + duracion);
+                    nuevoPlayer.setVolume(volumenActual);
                 });
+                player = nuevoPlayer;
                 player.play();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -146,7 +147,7 @@ public class Controlador {
             playlist.setActual(nodo);
             reproducir(nodo.getDato());
         } else {
-            System.out.println("Canción no encontrada");
+            System.out.println("Cancion no encontrada");
         }
     }
 }
