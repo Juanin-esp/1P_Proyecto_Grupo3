@@ -1,9 +1,11 @@
 package Vista;
-
+import javax.swing.ImageIcon;
 public class FrmLogin extends javax.swing.JFrame {
 
     public FrmLogin() {
         initComponents();
+        setTitle("Speentify");
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/redes-sociales.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         lblError.setVisible(false);

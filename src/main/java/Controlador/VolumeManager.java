@@ -29,22 +29,21 @@ public class VolumeManager {
         } else {
             controlador.setVolumen(volumen);
         }
-
-        actualizarIcono();
+        boolean mute = volumen == 0;
+        vista.btnTogMute.setSelected(mute);
+        vista.btnTogMute.setText(mute ? "🔇" : "🔊");
     }
 
     public void toggleMute() {
-        controlador.toggleMute();
+        boolean mute =vista.btnTogMute.isSelected();
+        if (mute) {
+            controlador.toggleMute();
+            vista.btnTogMute.setText("🔇");
+        } else {
+            controlador.toggleMute();
+            vista.btnTogMute.setText("🔊");
+        }
         int valor = (int)(controlador.getVolumenActual() * 100);
         vista.sliderVolume.setValue(valor);
-        actualizarIcono();
-    }
-
-    public void actualizarIcono() {
-        if (controlador.isMute() || controlador.getVolumenActual() == 0) {
-            vista.btnMute.setText("🔇");
-        } else {
-            vista.btnMute.setText("🔊");
-        }
     }
 }

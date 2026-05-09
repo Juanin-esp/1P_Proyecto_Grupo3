@@ -70,27 +70,20 @@ public class ManagementPlayer implements ActionListener {
 
             // Botón favorito
             favoritoManager.sincronizarBoton(cancion);
-
-            // Botones play/pause
-            actualizarBotonesReproduccion(true);
+            vista.btnTogPlayPause.setSelected(true);
+            vista.btnTogPlayPause.setText("⏸");
         });
     }
     // ────────────────────────────────────────────────────────────────────────
 
     private void initBotones() {
-        vista.btnPlay.addActionListener(this);
+        vista.btnTogPlayPause.addActionListener(this);
+        vista.btnTogMute.addActionListener(this);
         vista.btnNext.addActionListener(this);
         vista.btnPrev.addActionListener(this);
-        vista.btnMute.addActionListener(this);
-        vista.btnPause.addActionListener(this);
         vista.btnTogSongFav.addActionListener(this);
         vista.btnFav.addActionListener(this);
-        vista.btnPause.setVisible(false);
-    }
-
-    private void actualizarBotonesReproduccion(boolean reproduciendo) {
-        vista.btnPlay.setVisible(!reproduciendo);
-        vista.btnPause.setVisible(reproduciendo);
+        vista.btnRefresh.addActionListener(this);
     }
 
     private void initLista() {
@@ -164,16 +157,15 @@ public class ManagementPlayer implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == vista.btnPlay) {
+        if (e.getSource() == vista.btnTogPlayPause) {
+        if (vista.btnTogPlayPause.isSelected()) {
             controlador.playOrResumeActual();
-            actualizarBotonesReproduccion(true);
-        }
-
-        if (e.getSource() == vista.btnPause) {
+            vista.btnTogPlayPause.setText("⏸");
+        } else {
             controlador.pause();
-            actualizarBotonesReproduccion(false);
+            vista.btnTogPlayPause.setText("▶");
         }
+    }
 
         if (e.getSource() == vista.btnNext) {
             controlador.siguiente();   // el callback se encarga de la UI
@@ -183,7 +175,7 @@ public class ManagementPlayer implements ActionListener {
             controlador.anterior();    // el callback se encarga de la UI
         }
 
-        if (e.getSource() == vista.btnMute) {
+        if (e.getSource() == vista.btnTogMute) {
             volumeManager.toggleMute();
         }
 
@@ -193,6 +185,10 @@ public class ManagementPlayer implements ActionListener {
 
         if (e.getSource() == vista.btnFav) {
             favoritoManager.mostrarSoloFavoritas();
+        }
+        
+        if (e.getSource() == vista.btnRefresh) {
+            cargarLista();
         }
     }
 }
