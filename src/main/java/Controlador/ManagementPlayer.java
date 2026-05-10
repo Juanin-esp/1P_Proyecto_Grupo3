@@ -27,7 +27,7 @@ public class ManagementPlayer implements ActionListener {
     public ManagementPlayer(FrmPrincipal vista,Playlist<Cancion> playlist,Controlador controlador) {
         this.vista = vista;
         this.controlador = controlador;
-        favoritoManager = new FavoritoManager(vista, playlist);
+        favoritoManager = new FavoritoManager(playlist);
         playlistUI = new PlaylistUIManager(vista,playlist,controlador);
         searchManager = new SearchManager(vista,playlist,controlador,playlistUI);
         navigationManager = new NavigationManager(vista,playlist,controlador,playlistUI);
@@ -49,9 +49,12 @@ public class ManagementPlayer implements ActionListener {
         volumeManager.sincronizarUI();
 
         controlador.sincronizarVistaActual();
+        sincronizarToggles();
     }
 
     private void initBotones() {
+        vista.btnTogShuffle.addActionListener(this);
+        vista.btnTogRepeat.addActionListener(this);
         vista.btnTogPlayPause.addActionListener(this);
         vista.btnNext.addActionListener(this);
         vista.btnPrev.addActionListener(this);
@@ -95,13 +98,22 @@ public class ManagementPlayer implements ActionListener {
             volumeManager.toggleMute();
         }
         if (source == vista.btnTogSongFav) {
-
-            favoritoManager.toggleFavorito(
-                    cancionSeleccionada
-            );
+            Cancion actual =
+            controlador.getCancionActual();
+            if (actual != null) {
+                favoritoManager.toggleFavorito(actual);
+                vista.btnTogSongFav.setSelected(
+                        actual.isCancionFav()
+                );
+                vista.btnTogSongFav.setText(
+                        actual.isCancionFav()
+                                ? "❤️"
+                                : "🤍"
+                );
+            }
         }
         if (source == vista.btnFav) {
-            favoritoManager.mostrarSoloFavoritas();
+            playlistUI.mostrarSoloFavoritas();
         }
         if (source == vista.btnRefresh) {
             playlistUI.cargarLista();
@@ -113,5 +125,26 @@ public class ManagementPlayer implements ActionListener {
         if (source == vista.btnMusicas) {
             navigationManager.abrirFrmCanciones();
         }
+        if (e.getSource() == vista.btnTogShuffle) {
+            controlador.toggleShuffle();
+            vista.btnTogShuffle.setSelected(
+                    controlador.isShuffle()
+            );
+        }
+        
+        if (e.getSource() == vista.btnTogRepeat) {
+            controlador.toggleRepeat();
+            vista.btnTogRepeat.setSelected(
+                    controlador.isRepeat()
+            );
+        }
+    }
+    private void sincronizarToggles() {
+        vista.btnTogShuffle.setSelected(
+                controlador.isShuffle()
+        );
+        vista.btnTogRepeat.setSelected(
+                controlador.isRepeat()
+        );
     }
 }

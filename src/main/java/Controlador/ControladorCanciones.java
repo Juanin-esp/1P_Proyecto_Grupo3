@@ -23,6 +23,7 @@ public class ControladorCanciones implements ActionListener {
     private ProgressManager progressManager;
     private DeleteSongManager deleteSongManager;
     private UploadSongManager uploadManager;
+    private FavoritoManager favoritoManager;
 
     public ControladorCanciones(FrmCanciones vista,Playlist<Cancion> playlist,Controlador controlador,PlaylistUIManager playlistUI) {
         this.vista = vista;
@@ -32,6 +33,7 @@ public class ControladorCanciones implements ActionListener {
         progressManager =new ProgressManager(vista, controlador);
         deleteSongManager =new DeleteSongManager(vista,playlist,playlistUI,controlador);
         uploadManager = new UploadSongManager(vista,playlist,playlistUI);
+        favoritoManager = new FavoritoManager(playlist);
         progressManager.initSliderGUI();
         progressManager.initSlider();
         progressManager.initTimeline();
@@ -39,6 +41,7 @@ public class ControladorCanciones implements ActionListener {
         volumeManager.sincronizarUI();
         controlador.addOnCancionCambiada(this::actualizarUI);
         controlador.sincronizarVistaActual();
+        sincronizarToggles();
         cargarTablaCanciones();
         initEventos();
     }
@@ -52,6 +55,8 @@ public class ControladorCanciones implements ActionListener {
         vista.getBtnPrev().addActionListener(this);
         vista.getBtnTogMute().addActionListener(this);
         vista.getBtnTogSongFav().addActionListener(this);
+        vista.btnTogShuffle.addActionListener(this);
+        vista.btnTogRepeat.addActionListener(this);
     }
     
     private void cargarTablaCanciones() {
@@ -91,8 +96,10 @@ public class ControladorCanciones implements ActionListener {
         vista.getLblSongTitle().setText(cancion.getTitulo());
         vista.getLblArtist().setText(cancion.getArtista());
         vista.getBtnTogPlayPause().setSelected(true);
-        vista.getBtnTogPlayPause()
-                .setText("⏸");
+        vista.getBtnTogPlayPause().setText("⏸");
+        boolean fav =cancion.isCancionFav();
+        vista.getBtnTogSongFav().setSelected(fav);
+        vista.getBtnTogSongFav().setText(fav ? "❤️" : "💔");
     }
     
     @Override
@@ -126,5 +133,39 @@ public class ControladorCanciones implements ActionListener {
         if (e.getSource() == vista.btnSubirCancion) {
             uploadManager.subirCancion();
         }
+        if (e.getSource() == vista.btnTogShuffle) {
+            controlador.toggleShuffle();
+        }
+        if (e.getSource() == vista.btnTogRepeat) {
+            controlador.toggleRepeat();
+        }
+        if (e.getSource() == vista.getBtnTogSongFav()) {
+
+            Cancion actual =
+                    controlador.getCancionActual();
+
+            if (actual != null) {
+
+                favoritoManager.toggleFavorito(actual);
+
+                vista.getBtnTogSongFav().setSelected(
+                        actual.isCancionFav()
+                );
+
+                vista.getBtnTogSongFav().setText(
+                        actual.isCancionFav()
+                                ? "❤️"
+                                : "🤍"
+                );
+            }
+        }
+    }
+    private void sincronizarToggles() {
+        vista.btnTogShuffle.setSelected(
+                controlador.isShuffle()
+        );
+        vista.btnTogRepeat.setSelected(
+                controlador.isRepeat()
+        );
     }
 }

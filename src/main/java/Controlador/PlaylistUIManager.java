@@ -130,7 +130,43 @@ public class PlaylistUIManager {
                 break;
             }
         }
-
         actualizandoLista = false;
+    }
+    
+    public void mostrarSoloFavoritas() {
+
+        DefaultListModel<Cancion> modelo = new DefaultListModel<>();
+
+        var nodo = playlist.buscar(c -> true);
+
+        if (nodo == null) {
+            return;
+        }
+
+        var inicio = nodo;
+
+        var aux = nodo;
+
+        do {
+
+            if (aux.getDato().isCancionFav()) {
+
+                modelo.addElement(
+                        aux.getDato()
+                );
+            }
+
+            aux = aux.getSig();
+
+        } while (aux != inicio);
+
+        vista.listPlaylists.setModel(modelo);
+
+        if (modelo.isEmpty()) {
+
+            vista.lblSongTitle.setText(
+                    "No hay favoritas ❤"
+            );
+        }
     }
 }

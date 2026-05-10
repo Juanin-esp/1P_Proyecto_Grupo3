@@ -28,18 +28,15 @@ public class PlayerUIUpdater {
         }
 
         SwingUtilities.invokeLater(() -> {
-
             vista.lblSongTitle.setText(cancion.getTitulo());
-
             vista.lblArtist.setText(cancion.getArtista());
-
             vista.btnTogPlayPause.setSelected(true);
-
             vista.btnTogPlayPause.setText("⏸");
-
-            favoritoManager.sincronizarBoton(cancion);
-
+            boolean fav = cancion.isCancionFav();
+            vista.getBtnTogSongFav().setSelected(fav);
+            vista.getBtnTogSongFav().setText(fav ? "❤️": "🤍");
             playlistUI.seleccionarCancion(cancion);
+            vista.getBtnTogSongFav().setSelected(cancion.isCancionFav());
         });
     }
 }

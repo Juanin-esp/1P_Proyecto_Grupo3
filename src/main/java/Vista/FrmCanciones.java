@@ -31,10 +31,8 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         lblSongImage = new javax.swing.JLabel();
         lblSongTitle = new javax.swing.JLabel();
         lblArtist = new javax.swing.JLabel();
-        btnShuffle = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
-        btnRepeat = new javax.swing.JButton();
         sliderProgress = new javax.swing.JSlider();
         lblTimeStart = new javax.swing.JLabel();
         lblTimeEnd = new javax.swing.JLabel();
@@ -43,6 +41,8 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         btnTogPlayPause = new javax.swing.JToggleButton();
         btnTogMute = new javax.swing.JToggleButton();
         btnTogSongFav = new javax.swing.JToggleButton();
+        btnTogShuffle = new javax.swing.JToggleButton();
+        btnTogRepeat = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,12 +172,6 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         lblArtist.setText("Artistas");
         panelPlayer.add(lblArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
-        btnShuffle.setForeground(new java.awt.Color(255, 255, 255));
-        btnShuffle.setText("🔀");
-        btnShuffle.setBorderPainted(false);
-        btnShuffle.setContentAreaFilled(false);
-        panelPlayer.add(btnShuffle, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
-
         btnPrev.setForeground(new java.awt.Color(255, 255, 255));
         btnPrev.setText("⏮");
         btnPrev.setBorderPainted(false);
@@ -187,7 +181,7 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
                 btnPrevActionPerformed(evt);
             }
         });
-        panelPlayer.add(btnPrev, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
+        panelPlayer.add(btnPrev, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
         btnNext.setForeground(new java.awt.Color(255, 255, 255));
         btnNext.setText("⏭");
@@ -198,13 +192,7 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
                 btnNextActionPerformed(evt);
             }
         });
-        panelPlayer.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
-
-        btnRepeat.setForeground(new java.awt.Color(255, 255, 255));
-        btnRepeat.setText("🔁");
-        btnRepeat.setBorderPainted(false);
-        btnRepeat.setContentAreaFilled(false);
-        panelPlayer.add(btnRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
+        panelPlayer.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
         sliderProgress.setBackground(new java.awt.Color(0, 0, 0));
         sliderProgress.setForeground(new java.awt.Color(29, 185, 84));
@@ -250,6 +238,22 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         btnTogSongFav.setContentAreaFilled(false);
         btnTogSongFav.setFocusPainted(false);
         panelPlayer.add(btnTogSongFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 70, 30));
+
+        btnTogShuffle.setForeground(new java.awt.Color(29, 185, 84));
+        btnTogShuffle.setSelected(true);
+        btnTogShuffle.setText("🔀");
+        btnTogShuffle.setBorderPainted(false);
+        btnTogShuffle.setContentAreaFilled(false);
+        btnTogShuffle.setFocusPainted(false);
+        panelPlayer.add(btnTogShuffle, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 50, -1));
+
+        btnTogRepeat.setForeground(new java.awt.Color(29, 185, 84));
+        btnTogRepeat.setSelected(true);
+        btnTogRepeat.setText("🔁");
+        btnTogRepeat.setBorderPainted(false);
+        btnTogRepeat.setContentAreaFilled(false);
+        btnTogRepeat.setFocusPainted(false);
+        panelPlayer.add(btnTogRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 50, 20));
 
         panelPrincipal.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 870, 100));
 
@@ -340,11 +344,11 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
     public javax.swing.JButton btnMiMusica;
     public javax.swing.JButton btnNext;
     public javax.swing.JButton btnPrev;
-    public javax.swing.JButton btnRepeat;
-    public javax.swing.JButton btnShuffle;
     public javax.swing.JButton btnSubirCancion;
     public javax.swing.JToggleButton btnTogMute;
     public javax.swing.JToggleButton btnTogPlayPause;
+    public javax.swing.JToggleButton btnTogRepeat;
+    public javax.swing.JToggleButton btnTogShuffle;
     public javax.swing.JToggleButton btnTogSongFav;
     public javax.swing.JComboBox<String> cbFecha;
     private javax.swing.JPanel jPanel2;

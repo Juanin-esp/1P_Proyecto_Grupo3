@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Cancion;
+import Modelo.Nodo;
 import Modelo.Playlist;
 import Modelo.Validaciones;
 import java.io.File;
@@ -19,10 +20,20 @@ public class Controlador {
     private boolean mute = false;
     private double volumenAntesMute = 0.5;
     private double volumenActual = 0.5;
+    private boolean shuffle = false;
+    private boolean repeat = false;
 
     // ── NUEVO: callback que avisa a la UI qué canción suena ──
     private List<Consumer<Cancion>>listenersCancion =new ArrayList<>();
+    
+    public boolean isShuffle() {
+        return shuffle;
+    }
 
+    public boolean isRepeat() {
+        return repeat;
+    }
+    
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
@@ -47,13 +58,25 @@ public class Controlador {
     }
 
     public void siguiente() {
+        if (shuffle) {
+            reproducirAleatoria();
+            return;
+        }
         Cancion c = playlist.siguiente();
-        if (c != null) reproducir(c);
+        if (c != null) {
+            reproducir(c);
+        }
     }
 
     public void anterior() {
+        if (shuffle) {
+            reproducirAleatoria();
+            return;
+        }
         Cancion c = playlist.anterior();
-        if (c != null) reproducir(c);
+        if (c != null) {
+            reproducir(c);
+        }
     }
 
     private void reproducir(Cancion cancion) {
@@ -74,7 +97,14 @@ public class Controlador {
                 Media media = new Media(archivo.toURI().toString());
                 MediaPlayer nuevoPlayer = new MediaPlayer(media);
                 nuevoPlayer.setVolume(volumenActual);
-                nuevoPlayer.setOnEndOfMedia(this::siguiente);
+                nuevoPlayer.setOnEndOfMedia(() -> {
+                    if (repeat) {
+                        player.seek(javafx.util.Duration.ZERO);
+                        player.play();
+                        return;
+                    }
+                    siguiente();
+                });
                 nuevoPlayer.setOnReady(() -> {
                     double duracion =nuevoPlayer.getMedia().getDuration().toSeconds();
                     System.out.println("Duracion: " + duracion);
@@ -99,7 +129,32 @@ public class Controlador {
         }
         reproducir(cancion);
     }
-
+    
+    public void reproducirAleatoria() {
+       if (playlist.getSize() == 0) {
+           return;
+       }
+       int total = playlist.getSize();
+       int indice;
+       do {
+           indice = (int) (Math.random() * total);
+       } while (
+               total > 1 &&
+               obtenerNodoPorIndice(indice).getDato() == playlist.getActual()
+       );
+       var nodo = obtenerNodoPorIndice(indice);
+       playlist.setActual(nodo);
+       reproducir(nodo.getDato());
+   }
+    
+    private Nodo<Cancion> obtenerNodoPorIndice(int indice) {
+        var nodo = playlist.getCabeza();
+        for (int i = 0; i < indice; i++) {
+            nodo = nodo.getSig();
+        }
+        return nodo;
+    }
+    
     public void pause() {
         if (!Validaciones.playerValido(player)) return;
         player.pause();
@@ -145,9 +200,24 @@ public class Controlador {
         volumenActual = volumen;
         if (Validaciones.playerValido(player)) player.setVolume(volumen);
     }
+    
+    public void toggleShuffle() {
 
-    public void shuffle() { }
+        shuffle = !shuffle;
 
+        System.out.println(
+                "Shuffle: " + shuffle
+        );
+    }
+
+    public void toggleRepeat() {
+
+        repeat = !repeat;
+
+        System.out.println(
+                "Repeat: " + repeat
+        );
+    }
     public void buscarYReproducir(String titulo) {
         var nodo = playlist.buscar(c -> c.getTitulo().equalsIgnoreCase(titulo));
         if (nodo != null) {

@@ -8,6 +8,13 @@ public class Playlist<T> {
         actual = null;
         size = 0;
     }
+    public int getSize() {
+        return size;
+    }
+    
+    public Nodo<T> getCabeza() {
+        return actual;
+    }
     
     public void setActual(Nodo<T> nodo) {
         this.actual = nodo;
@@ -145,7 +152,7 @@ public class Playlist<T> {
                 if (aux == actual) {
                     actual = aux.getSig();
                 }
-
+                size--;
                 return true;
             }
 
