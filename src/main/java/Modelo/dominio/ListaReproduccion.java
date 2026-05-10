@@ -1,10 +1,12 @@
-package Modelo;
+package Modelo.dominio;
 
-public class Playlist<T> {
+import javax.swing.DefaultListModel;
+
+public class ListaReproduccion<T> {
     private Nodo<T> actual;
     private int size;
     
-    public Playlist() {
+    public ListaReproduccion() {
         actual = null;
         size = 0;
     }
@@ -63,25 +65,6 @@ public class Playlist<T> {
         return actual.getDato();
     }
     
-    //Eliminar Actual
-    public void eliminarActual() {
-        if (estaVacia()) return;
-
-        if (size == 1) {
-            actual = null;
-        } else {
-            Nodo<T> anterior = actual.getAnt();
-            Nodo<T> siguiente = actual.getSig();
-
-            anterior.setSig(siguiente);
-            siguiente.setAnt(anterior);
-
-            actual = siguiente;
-        }
-
-        size--;
-    }
-    
     //Buscar
     public Nodo<T> buscar(java.util.function.Predicate<T> criterio) {
         if (estaVacia()) return null;
@@ -98,38 +81,24 @@ public class Playlist<T> {
         return null;
     }
     
-    //Recorrer
-    public void mostrar() {
-        if (estaVacia()) return;
-
-        Nodo<T> aux = actual;
-
-        do {
-            System.out.println(aux.getDato());
-            aux = aux.getSig();
-        } while (aux != actual);
-    }
     //Mostrar Recursivo
-    public void mostrarRecursivo() {
+    public void cargarModeloRecursivo(DefaultListModel<T> modelo) {
         if (!estaVacia()) {
-            mostrarRecursivo(actual, actual);
+            cargarModeloRecursivo(actual, actual, modelo);
         }
     }
 
-    private void mostrarRecursivo(Nodo<T> nodo, Nodo<T> inicio) {
-        System.out.println(nodo.getDato());
-
+    private void cargarModeloRecursivo(Nodo<T> nodo,Nodo<T> inicio,DefaultListModel<T> modelo) {
+        modelo.addElement(nodo.getDato());
         if (nodo.getSig() != inicio) {
-            mostrarRecursivo(nodo.getSig(), inicio);
+            cargarModeloRecursivo(nodo.getSig(),inicio,modelo);
         }
     }
     
     public boolean eliminar(java.util.function.Predicate<T> criterio) {
-
         if (actual == null) {
             return false;
         }
-
         Nodo<T> inicio = actual;
         Nodo<T> aux = actual;
 

@@ -1,10 +1,10 @@
 package Vista;
 import javax.swing.*;
-public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
+public class FrmCanciones extends javax.swing.JFrame implements VistaReproductor {
 
     public FrmCanciones() {
         initComponents();
-        setTitle("Speentify");
+        setTitle("PulsePlayer");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/redes-sociales.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -150,8 +150,8 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
 
         lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(0, 204, 51));
-        lblLogo.setText("Speentify");
-        panelSidebar.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        lblLogo.setText("PulsePlayer");
+        panelSidebar.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         panelPrincipal.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 460));
 

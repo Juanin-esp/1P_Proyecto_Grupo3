@@ -1,20 +1,21 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Modelo.Cancion;
+import Modelo.servicios.FavoritoService;
+import Modelo.dominio.Cancion;
 import Vista.FrmPrincipal;
 
 import javax.swing.SwingUtilities;
 
-public class PlayerUIUpdater {
+public class ActualizadorUIReproductor {
 
     private FrmPrincipal vista;
-    private FavoritoManager favoritoManager;
-    private PlaylistUIManager playlistUI;
+    private FavoritoService favoritoManager;
+    private GestorUIPlaylist playlistUI;
 
-    public PlayerUIUpdater(
+    public ActualizadorUIReproductor(
             FrmPrincipal vista,
-            FavoritoManager favoritoManager,
-            PlaylistUIManager playlistUI
+            FavoritoService favoritoManager,
+            GestorUIPlaylist playlistUI
     ) {
         this.vista = vista;
         this.favoritoManager = favoritoManager;

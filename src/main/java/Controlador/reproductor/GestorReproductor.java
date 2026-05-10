@@ -1,39 +1,42 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Modelo.Cancion;
-import Modelo.Playlist;
+import Modelo.servicios.ReproductorService;
+import Modelo.servicios.BusquedaService;
+import Modelo.servicios.FavoritoService;
+import Modelo.dominio.Cancion;
+import Modelo.dominio.ListaReproduccion;
 import Vista.FrmPrincipal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ManagementPlayer implements ActionListener {
+public class GestorReproductor implements ActionListener {
 
     private FrmPrincipal vista;
 
-    private Controlador controlador;
+    private ReproductorService controlador;
 
-    private VolumeManager volumeManager;
-    private ProgressManager progressManager;
-    private FavoritoManager favoritoManager;
+    private GestorVolumen volumeManager;
+    private GestorProgreso progressManager;
+    private FavoritoService favoritoManager;
 
-    private PlaylistUIManager playlistUI;
-    private SearchManager searchManager;
-    private NavigationManager navigationManager;
-    private PlayerUIUpdater uiUpdater;
+    private GestorUIPlaylist playlistUI;
+    private BusquedaService searchManager;
+    private GestorNavegacion navigationManager;
+    private ActualizadorUIReproductor uiUpdater;
 
     private Cancion cancionSeleccionada;
 
-    public ManagementPlayer(FrmPrincipal vista,Playlist<Cancion> playlist,Controlador controlador) {
+    public GestorReproductor(FrmPrincipal vista,ListaReproduccion<Cancion> playlist,ReproductorService controlador) {
         this.vista = vista;
         this.controlador = controlador;
-        favoritoManager = new FavoritoManager(playlist);
-        playlistUI = new PlaylistUIManager(vista,playlist,controlador);
-        searchManager = new SearchManager(vista,playlist,controlador,playlistUI);
-        navigationManager = new NavigationManager(vista,playlist,controlador,playlistUI);
-        uiUpdater = new PlayerUIUpdater(vista,favoritoManager,playlistUI);
-        volumeManager = new VolumeManager(vista,controlador);
-        progressManager = new ProgressManager(vista,controlador);
+        favoritoManager = new FavoritoService(playlist);
+        playlistUI = new GestorUIPlaylist(vista,playlist,controlador);
+        searchManager = new BusquedaService(vista,playlist,controlador,playlistUI);
+        navigationManager = new GestorNavegacion(vista,playlist,controlador,playlistUI);
+        uiUpdater = new ActualizadorUIReproductor(vista,favoritoManager,playlistUI);
+        volumeManager = new GestorVolumen(vista,controlador);
+        progressManager = new GestorProgreso(vista,controlador);
         controlador.addOnCancionCambiada(cancion -> {
             cancionSeleccionada = cancion;
             uiUpdater.actualizar(cancion);
@@ -108,7 +111,7 @@ public class ManagementPlayer implements ActionListener {
                 vista.btnTogSongFav.setText(
                         actual.isCancionFav()
                                 ? "❤️"
-                                : "🤍"
+                                : "💔"
                 );
             }
         }

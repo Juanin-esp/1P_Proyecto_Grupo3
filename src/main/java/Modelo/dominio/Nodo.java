@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.dominio;
 
 public class Nodo<T> {
     private T dato;

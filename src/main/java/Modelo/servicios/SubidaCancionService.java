@@ -1,9 +1,10 @@
-package Controlador;
+package Modelo.servicios;
 
-import Modelo.Cancion;
-import Modelo.CancionDAO;
-import Modelo.MusicLoader;
-import Modelo.Playlist;
+import Controlador.reproductor.GestorUIPlaylist;
+import Modelo.dominio.Cancion;
+import Modelo.persistencia.CancionDAO;
+import Modelo.servicios.SincronizacionService;
+import Modelo.dominio.ListaReproduccion;
 
 import Vista.FrmCanciones;
 
@@ -21,20 +22,17 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class UploadSongManager {
+public class SubidaCancionService {
 
     private FrmCanciones vista;
 
-    private Playlist<Cancion> playlist;
+    private ListaReproduccion<Cancion> playlist;
 
-    private PlaylistUIManager playlistUI;
+    private GestorUIPlaylist playlistUI;
 
     private CancionDAO dao;
 
-    public UploadSongManager(
-            FrmCanciones vista,
-            Playlist<Cancion> playlist,
-            PlaylistUIManager playlistUI
+    public SubidaCancionService(FrmCanciones vista,ListaReproduccion<Cancion> playlist,GestorUIPlaylist playlistUI
     ) {
 
         this.vista = vista;
@@ -46,9 +44,6 @@ public class UploadSongManager {
         dao = new CancionDAO();
     }
 
-    // =====================================================
-    // SUBIR CANCION
-    // =====================================================
 
     public void subirCancion() {
 
@@ -75,23 +70,9 @@ public class UploadSongManager {
                 return;
             }
 
-            // =================================================
-            // ARCHIVO ORIGINAL
-            // =================================================
+            File archivoOriginal = chooser.getSelectedFile();
 
-            File archivoOriginal =
-                    chooser.getSelectedFile();
-
-            // =================================================
-            // CARPETA MUSIC
-            // =================================================
-
-            File carpetaMusic =
-                    MusicLoader.obtenerCarpetaMusica();
-
-            // =================================================
-            // EVITAR DUPLICADOS
-            // =================================================
+            File carpetaMusic = SincronizacionService.obtenerCarpetaMusica();
 
             String nombreArchivo =
                     archivoOriginal.getName();
@@ -112,19 +93,7 @@ public class UploadSongManager {
                 return;
             }
 
-            // =================================================
-            // COPIAR ARCHIVO
-            // =================================================
-
-            Files.copy(
-                    archivoOriginal.toPath(),
-                    archivoDestino.toPath(),
-                    StandardCopyOption.REPLACE_EXISTING
-            );
-
-            // =================================================
-            // LEER METADATA
-            // =================================================
+            Files.copy(archivoOriginal.toPath(),archivoDestino.toPath(),StandardCopyOption.REPLACE_EXISTING);
 
             String titulo = "Sin título";
 
@@ -169,16 +138,8 @@ public class UploadSongManager {
                 );
             }
 
-            // =================================================
-            // RUTA RELATIVA
-            // =================================================
-
             String ruta =
                     "music/" + nombreArchivo;
-
-            // =================================================
-            // CREAR CANCION
-            // =================================================
 
             Cancion cancion =
                     new Cancion(
@@ -188,10 +149,6 @@ public class UploadSongManager {
                             duracion,
                             false
                     );
-
-            // =================================================
-            // GUARDAR EN MONGODB
-            // =================================================
 
             boolean guardado =
                     dao.guardarCancion(cancion);
@@ -206,15 +163,7 @@ public class UploadSongManager {
                 return;
             }
 
-            // =================================================
-            // INSERTAR PLAYLIST
-            // =================================================
-
             playlist.insertar(cancion);
-
-            // =================================================
-            // ACTUALIZAR TABLA
-            // =================================================
 
             DefaultTableModel modelo =
                     (DefaultTableModel)
@@ -228,10 +177,6 @@ public class UploadSongManager {
                     duracion,
                     false
             });
-
-            // =================================================
-            // ACTUALIZAR JLIST
-            // =================================================
 
             if (playlistUI != null) {
                 playlistUI.cargarLista();

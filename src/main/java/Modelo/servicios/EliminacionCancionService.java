@@ -1,8 +1,9 @@
-package Controlador;
+package Modelo.servicios;
 
-import Modelo.Cancion;
-import Modelo.CancionDAO;
-import Modelo.Playlist;
+import Controlador.reproductor.GestorUIPlaylist;
+import Modelo.dominio.Cancion;
+import Modelo.persistencia.CancionDAO;
+import Modelo.dominio.ListaReproduccion;
 
 import Vista.FrmCanciones;
 
@@ -11,15 +12,15 @@ import javax.swing.table.DefaultTableModel;
 
 import java.io.File;
 
-public class DeleteSongManager {
+public class EliminacionCancionService {
     private FrmCanciones vista;
-    private Playlist<Cancion> playlist;
-    private PlaylistUIManager playlistUI;
-    private Controlador controlador;
+    private ListaReproduccion<Cancion> playlist;
+    private GestorUIPlaylist playlistUI;
+    private ReproductorService controlador;
     private CancionDAO dao;
     
-    public DeleteSongManager(FrmCanciones vista,Playlist<Cancion> playlist,PlaylistUIManager playlistUI,
-            Controlador controlador
+    public EliminacionCancionService(FrmCanciones vista,ListaReproduccion<Cancion> playlist,GestorUIPlaylist playlistUI,
+            ReproductorService controlador
     ) {
 
         this.vista = vista;

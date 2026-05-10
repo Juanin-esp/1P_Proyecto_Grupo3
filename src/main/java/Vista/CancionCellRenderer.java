@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.Cancion;
+import Modelo.dominio.Cancion;
 
 import javax.swing.*;
 import java.awt.*;

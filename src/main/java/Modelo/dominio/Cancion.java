@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.dominio;
 
 public class Cancion {
     private String titulo;

@@ -1,26 +1,27 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Modelo.Cancion;
-import Modelo.Playlist;
+import Modelo.servicios.ReproductorService;
+import Modelo.dominio.Cancion;
+import Modelo.dominio.ListaReproduccion;
 import Vista.CancionCellRenderer;
 import Vista.FrmPrincipal;
 
 import javax.swing.DefaultListModel;
 
-public class PlaylistUIManager {
+public class GestorUIPlaylist {
 
     private FrmPrincipal vista;
-    private Playlist<Cancion> playlist;
-    private Controlador controlador;
+    private ListaReproduccion<Cancion> playlist;
+    private ReproductorService controlador;
 
     private CancionCellRenderer renderer;
 
     private boolean actualizandoLista = false;
 
-    public PlaylistUIManager(
+    public GestorUIPlaylist(
             FrmPrincipal vista,
-            Playlist<Cancion> playlist,
-            Controlador controlador
+            ListaReproduccion<Cancion> playlist,
+            ReproductorService controlador
     ) {
         this.vista = vista;
         this.playlist = playlist;
@@ -84,30 +85,10 @@ public class PlaylistUIManager {
 
     public void cargarLista() {
 
-        DefaultListModel<Cancion> modelo =
-                new DefaultListModel<>();
-
-        var nodo = playlist.buscar(c -> true);
-
-        if (nodo == null) {
-            return;
-        }
-
-        var inicio = nodo;
-        var aux = nodo;
-
-        do {
-
-            modelo.addElement(aux.getDato());
-
-            aux = aux.getSig();
-
-        } while (aux != inicio);
-
+        DefaultListModel<Cancion> modelo = new DefaultListModel<>();
+        playlist.cargarModeloRecursivo(modelo);
         vista.listPlaylists.setModel(modelo);
-
         renderer = new CancionCellRenderer();
-
         vista.listPlaylists.setCellRenderer(renderer);
     }
 
@@ -134,39 +115,24 @@ public class PlaylistUIManager {
     }
     
     public void mostrarSoloFavoritas() {
-
         DefaultListModel<Cancion> modelo = new DefaultListModel<>();
-
         var nodo = playlist.buscar(c -> true);
-
         if (nodo == null) {
             return;
         }
-
         var inicio = nodo;
-
         var aux = nodo;
-
         do {
-
             if (aux.getDato().isCancionFav()) {
-
                 modelo.addElement(
                         aux.getDato()
                 );
             }
-
             aux = aux.getSig();
-
         } while (aux != inicio);
-
         vista.listPlaylists.setModel(modelo);
-
         if (modelo.isEmpty()) {
-
-            vista.lblSongTitle.setText(
-                    "No hay favoritas ❤"
-            );
+            vista.lblSongTitle.setText("No hay favoritas ❤");
         }
     }
 }

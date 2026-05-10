@@ -1,10 +1,10 @@
 package Vista;
 import javax.swing.ImageIcon;
 import javax.swing.*;
-public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
+public class FrmPrincipal extends javax.swing.JFrame implements VistaReproductor {
     public FrmPrincipal() {
         initComponents();
-        setTitle("Speentify");
+        setTitle("PulsePlayer");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/redes-sociales.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -34,7 +34,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
         lblLogo = new javax.swing.JLabel();
         btnMusicas = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnCrearPlaylist = new javax.swing.JButton();
         txtBuscarCancion = new javax.swing.JTextField();
         panelContenido = new javax.swing.JPanel();
         btnRefresh = new javax.swing.JButton();
@@ -156,7 +155,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
 
         lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(0, 204, 51));
-        lblLogo.setText("Speetinfy");
+        lblLogo.setText("PulsePlayer");
 
         btnMusicas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMusicas.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,11 +167,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
         btnBuscar.setText("Buscar");
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
-
-        btnCrearPlaylist.setForeground(new java.awt.Color(102, 255, 102));
-        btnCrearPlaylist.setText("+ Nueva playlist");
-        btnCrearPlaylist.setBorderPainted(false);
-        btnCrearPlaylist.setContentAreaFilled(false);
 
         txtBuscarCancion.setBackground(new java.awt.Color(28, 28, 28));
         txtBuscarCancion.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,7 +182,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
                         .addGap(28, 28, 28)
                         .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCrearPlaylist)
                             .addComponent(btnBuscar)))
                     .addGroup(panelSidebarLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -209,9 +202,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
                 .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(btnMusicas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCrearPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         jPanel3.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 430));
@@ -366,7 +357,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements PlayerView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton btnCrearPlaylist;
     public javax.swing.JButton btnFav;
     public javax.swing.JButton btnMusicas;
     public javax.swing.JButton btnNext;

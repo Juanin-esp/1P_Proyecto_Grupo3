@@ -1,18 +1,18 @@
-package Controlador;
+package Modelo.servicios;
 
-import Modelo.Cancion;
-import Modelo.CancionDAO;
-import Modelo.Playlist;
+import Modelo.dominio.Cancion;
+import Modelo.persistencia.CancionDAO;
+import Modelo.dominio.ListaReproduccion;
 
-public class FavoritoManager {
+public class FavoritoService {
 
-    private Playlist<Cancion> playlist;
+    private ListaReproduccion<Cancion> playlist;
 
     private final CancionDAO dao =
             new CancionDAO();
 
-    public FavoritoManager(
-            Playlist<Cancion> playlist
+    public FavoritoService(
+            ListaReproduccion<Cancion> playlist
     ) {
 
         this.playlist = playlist;

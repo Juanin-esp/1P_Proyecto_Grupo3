@@ -1,19 +1,20 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Vista.PlayerView;
+import Modelo.servicios.ReproductorService;
 import Vista.SliderModerno;
 import Modelo.Validaciones;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import Vista.VistaReproductor;
 
-public class ProgressManager {
+public class GestorProgreso {
 
-    private PlayerView vista;
-    private Controlador controlador;
+    private VistaReproductor vista;
+    private ReproductorService controlador;
     private Timeline timeline;
 
-    public ProgressManager(PlayerView vista, Controlador controlador) {
+    public GestorProgreso(VistaReproductor vista, ReproductorService controlador) {
         this.vista = vista;
         this.controlador = controlador;
     }

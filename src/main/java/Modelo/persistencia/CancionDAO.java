@@ -1,5 +1,6 @@
-package Modelo;
+package Modelo.persistencia;
 
+import Modelo.dominio.Cancion;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 

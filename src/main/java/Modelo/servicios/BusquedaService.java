@@ -1,23 +1,24 @@
-package Controlador;
+package Modelo.servicios;
 
-import Modelo.Cancion;
-import Modelo.Playlist;
+import Controlador.reproductor.GestorUIPlaylist;
+import Modelo.dominio.Cancion;
+import Modelo.dominio.ListaReproduccion;
 import Vista.FrmPrincipal;
 
 import javax.swing.JOptionPane;
 
-public class SearchManager {
+public class BusquedaService {
 
     private FrmPrincipal vista;
-    private Playlist<Cancion> playlist;
-    private Controlador controlador;
-    private PlaylistUIManager playlistUI;
+    private ListaReproduccion<Cancion> playlist;
+    private ReproductorService controlador;
+    private GestorUIPlaylist playlistUI;
 
-    public SearchManager(
+    public BusquedaService(
             FrmPrincipal vista,
-            Playlist<Cancion> playlist,
-            Controlador controlador,
-            PlaylistUIManager playlistUI
+            ListaReproduccion<Cancion> playlist,
+            ReproductorService controlador,
+            GestorUIPlaylist playlistUI
     ) {
         this.vista = vista;
         this.playlist = playlist;

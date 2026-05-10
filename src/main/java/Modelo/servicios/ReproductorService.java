@@ -1,8 +1,8 @@
-package Controlador;
+package Modelo.servicios;
 
-import Modelo.Cancion;
-import Modelo.Nodo;
-import Modelo.Playlist;
+import Modelo.dominio.Cancion;
+import Modelo.dominio.Nodo;
+import Modelo.dominio.ListaReproduccion;
 import Modelo.Validaciones;
 import java.io.File;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.util.function.Consumer;
 
-public class Controlador {
+public class ReproductorService {
 
-    private Playlist<Cancion> playlist;
+    private ListaReproduccion<Cancion> playlist;
     private MediaPlayer player;
     private boolean mute = false;
     private double volumenAntesMute = 0.5;
@@ -34,7 +34,7 @@ public class Controlador {
         return repeat;
     }
     
-    public Controlador(Playlist<Cancion> playlist) {
+    public ReproductorService(ListaReproduccion<Cancion> playlist) {
         this.playlist = playlist;
     }
     

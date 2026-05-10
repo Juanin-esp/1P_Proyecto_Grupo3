@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.persistencia;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;

@@ -1,8 +1,16 @@
 package Controlador;
 
-import Modelo.Cancion;
-import Modelo.CancionDAO;
-import Modelo.Playlist;
+import Modelo.servicios.FavoritoService;
+import Modelo.servicios.EliminacionCancionService;
+import Modelo.servicios.ReproductorService;
+import Modelo.servicios.SubidaCancionService;
+import Controlador.reproductor.GestorProgreso;
+import Controlador.reproductor.GestorVolumen;
+import Controlador.reproductor.GestorReproductor;
+import Controlador.reproductor.GestorUIPlaylist;
+import Modelo.dominio.Cancion;
+import Modelo.persistencia.CancionDAO;
+import Modelo.dominio.ListaReproduccion;
 
 import Vista.FrmCanciones;
 import Vista.FrmPrincipal;
@@ -17,23 +25,23 @@ import java.awt.event.ActionListener;
 public class ControladorCanciones implements ActionListener {
 
     private FrmCanciones vista;
-    private Playlist<Cancion> playlist;
-    private Controlador controlador;
-    private VolumeManager volumeManager;
-    private ProgressManager progressManager;
-    private DeleteSongManager deleteSongManager;
-    private UploadSongManager uploadManager;
-    private FavoritoManager favoritoManager;
+    private ListaReproduccion<Cancion> playlist;
+    private ReproductorService controlador;
+    private GestorVolumen volumeManager;
+    private GestorProgreso progressManager;
+    private EliminacionCancionService deleteSongManager;
+    private SubidaCancionService uploadManager;
+    private FavoritoService favoritoManager;
 
-    public ControladorCanciones(FrmCanciones vista,Playlist<Cancion> playlist,Controlador controlador,PlaylistUIManager playlistUI) {
+    public ControladorCanciones(FrmCanciones vista,ListaReproduccion<Cancion> playlist,ReproductorService controlador,GestorUIPlaylist playlistUI) {
         this.vista = vista;
         this.playlist = playlist;
         this.controlador = controlador;
-        volumeManager =new VolumeManager(vista, controlador);
-        progressManager =new ProgressManager(vista, controlador);
-        deleteSongManager =new DeleteSongManager(vista,playlist,playlistUI,controlador);
-        uploadManager = new UploadSongManager(vista,playlist,playlistUI);
-        favoritoManager = new FavoritoManager(playlist);
+        volumeManager =new GestorVolumen(vista, controlador);
+        progressManager =new GestorProgreso(vista, controlador);
+        deleteSongManager =new EliminacionCancionService(vista,playlist,playlistUI,controlador);
+        uploadManager = new SubidaCancionService(vista,playlist,playlistUI);
+        favoritoManager = new FavoritoService(playlist);
         progressManager.initSliderGUI();
         progressManager.initSlider();
         progressManager.initTimeline();
@@ -86,7 +94,7 @@ public class ControladorCanciones implements ActionListener {
     }
     private void volverPrincipal() {
         FrmPrincipal frm = new FrmPrincipal();
-        new ManagementPlayer(frm,playlist,controlador);
+        new GestorReproductor(frm,playlist,controlador);
         frm.setVisible(true);
         vista.dispose();
     }
@@ -110,12 +118,10 @@ public class ControladorCanciones implements ActionListener {
         if (e.getSource() == vista.getBtnTogPlayPause()) {
             if (vista.getBtnTogPlayPause().isSelected()) {
                 controlador.playOrResumeActual();
-                vista.getBtnTogPlayPause()
-                        .setText("⏸");
+                vista.getBtnTogPlayPause().setText("⏸");
             } else {
                 controlador.pause();
-                vista.getBtnTogPlayPause()
-                        .setText("▶");
+                vista.getBtnTogPlayPause().setText("▶");
             }
         }
         if (e.getSource() == vista.getBtnNext()) {

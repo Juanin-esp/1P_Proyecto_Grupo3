@@ -1,18 +1,20 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Modelo.Cancion;
-import Modelo.Playlist;
+import Controlador.ControladorCanciones;
+import Modelo.servicios.ReproductorService;
+import Modelo.dominio.Cancion;
+import Modelo.dominio.ListaReproduccion;
 import Vista.FrmCanciones;
 import Vista.FrmPrincipal;
 
-public class NavigationManager {
+public class GestorNavegacion {
 
     private FrmPrincipal vista;
-    private Playlist<Cancion> playlist;
-    private Controlador controlador;
-    private PlaylistUIManager playlistUI;
+    private ListaReproduccion<Cancion> playlist;
+    private ReproductorService controlador;
+    private GestorUIPlaylist playlistUI;
 
-    public NavigationManager(FrmPrincipal vista,Playlist<Cancion> playlist,Controlador controlador,PlaylistUIManager playlistUI) {
+    public GestorNavegacion(FrmPrincipal vista,ListaReproduccion<Cancion> playlist,ReproductorService controlador,GestorUIPlaylist playlistUI) {
             this.vista = vista;
             this.playlist = playlist;
             this.controlador = controlador;

@@ -2,7 +2,7 @@ package Vista;
 
 import javax.swing.*;
 
-public interface PlayerView {
+public interface VistaReproductor {
     JToggleButton getBtnTogPlayPause();
     JToggleButton getBtnTogMute();
     JButton getBtnNext();

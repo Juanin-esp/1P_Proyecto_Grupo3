@@ -1,6 +1,6 @@
 package Modelo;
 
-import Modelo.Cancion;
+import Modelo.dominio.Cancion;
 import javafx.scene.media.MediaPlayer;
 
 import java.net.URL;

@@ -1,13 +1,14 @@
-package Controlador;
+package Controlador.reproductor;
 
-import Vista.PlayerView;
+import Modelo.servicios.ReproductorService;
+import Vista.VistaReproductor;
 
-public class VolumeManager {
+public class GestorVolumen {
 
-    private PlayerView vista;
-    private Controlador controlador;
+    private VistaReproductor vista;
+    private ReproductorService controlador;
 
-    public VolumeManager(PlayerView vista,Controlador controlador) {
+    public GestorVolumen(VistaReproductor vista,ReproductorService controlador) {
         this.vista = vista;
         this.controlador = controlador;
     }

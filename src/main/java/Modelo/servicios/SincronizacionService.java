@@ -1,5 +1,8 @@
-package Modelo;
+package Modelo.servicios;
 
+import Modelo.dominio.Cancion;
+import Modelo.persistencia.CancionDAO;
+import Modelo.dominio.ListaReproduccion;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
@@ -8,13 +11,10 @@ import org.jaudiotagger.tag.Tag;
 import java.io.File;
 import java.util.List;
 
-public class MusicLoader {
+public class SincronizacionService {
 
     private static final String MUSIC_FOLDER = "music";
 
-    // =========================================================
-    // OBTENER CARPETA MUSIC
-    // =========================================================
     public static File obtenerCarpetaMusica() {
 
         File carpeta = new File(MUSIC_FOLDER);
@@ -26,9 +26,6 @@ public class MusicLoader {
         return carpeta;
     }
 
-    // =========================================================
-    // SINCRONIZAR MUSIC/ CON MONGODB
-    // =========================================================
     public static void sincronizarConCarpeta() {
 
         try {
@@ -115,11 +112,8 @@ public class MusicLoader {
         }
     }
 
-    // =========================================================
-    // CARGAR PLAYLIST DESDE MONGODB
-    // =========================================================
     public static void cargarDesdeBD(
-            Playlist<Cancion> playlist
+            ListaReproduccion<Cancion> playlist
     ) {
 
         try {
