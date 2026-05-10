@@ -159,4 +159,26 @@ public class Controlador {
             System.out.println("Cancion no encontrada");
         }
     }
+    
+    public void detenerYLiberar() {
+
+        try {
+
+            if (player != null) {
+
+                player.stop();
+
+                player.dispose();
+
+                player = null;
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Error liberando MediaPlayer: "
+                            + e.getMessage()
+            );
+        }
+    }
 }

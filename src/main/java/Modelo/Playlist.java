@@ -116,4 +116,43 @@ public class Playlist<T> {
             mostrarRecursivo(nodo.getSig(), inicio);
         }
     }
+    
+    public boolean eliminar(java.util.function.Predicate<T> criterio) {
+
+        if (actual == null) {
+            return false;
+        }
+
+        Nodo<T> inicio = actual;
+        Nodo<T> aux = actual;
+
+        do {
+
+            if (criterio.test(aux.getDato())) {
+
+                // SOLO UN NODO
+                if (aux.getSig() == aux) {
+
+                    actual = null;
+
+                    return true;
+                }
+
+                aux.getAnt().setSig(aux.getSig());
+
+                aux.getSig().setAnt(aux.getAnt());
+
+                if (aux == actual) {
+                    actual = aux.getSig();
+                }
+
+                return true;
+            }
+
+            aux = aux.getSig();
+
+        } while (aux != inicio);
+
+        return false;
+    }
 }

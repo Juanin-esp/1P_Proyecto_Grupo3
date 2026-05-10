@@ -16,26 +16,16 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         panelPrincipal = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        btnSubirCancion1 = new javax.swing.JButton();
-        panelTabs = new javax.swing.JPanel();
-        btnArtistas = new javax.swing.JButton();
-        btnCanciones = new javax.swing.JButton();
-        btnAlbumes = new javax.swing.JButton();
+        btnSubirCancion = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblOrdenar = new javax.swing.JLabel();
         cbFecha = new javax.swing.JComboBox<>();
         txtBuscarTabla = new javax.swing.JTextField();
         scrollTabla = new javax.swing.JScrollPane();
         tblCanciones = new javax.swing.JTable();
-        btnEliminarPlaylist = new javax.swing.JButton();
+        btnEliminarCancion = new javax.swing.JButton();
         panelSidebar = new javax.swing.JPanel();
-        txtBuscarSidebar = new javax.swing.JTextField();
-        btnRecientes = new javax.swing.JButton();
         btnMiMusica = new javax.swing.JButton();
-        btnListas = new javax.swing.JButton();
-        btnEnCurso = new javax.swing.JButton();
-        btnConfiguracion = new javax.swing.JButton();
-        btnNuevaLista = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         panelPlayer = new javax.swing.JPanel();
         lblSongImage = new javax.swing.JLabel();
@@ -69,54 +59,11 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         lblTitulo.setText("Mi música");
         panelHeader.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 17, -1, -1));
 
-        btnSubirCancion1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubirCancion1.setText("Subir canción");
-        btnSubirCancion1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSubirCancion1.setContentAreaFilled(false);
-        panelHeader.add(btnSubirCancion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 90, 23));
-
-        panelTabs.setBackground(new java.awt.Color(12, 12, 12));
-
-        btnArtistas.setForeground(new java.awt.Color(255, 255, 255));
-        btnArtistas.setText("Artistas");
-        btnArtistas.setBorderPainted(false);
-        btnArtistas.setContentAreaFilled(false);
-
-        btnCanciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnCanciones.setText("Canciones");
-        btnCanciones.setBorderPainted(false);
-        btnCanciones.setContentAreaFilled(false);
-
-        btnAlbumes.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlbumes.setText("Álbumes");
-        btnAlbumes.setBorderPainted(false);
-        btnAlbumes.setContentAreaFilled(false);
-
-        javax.swing.GroupLayout panelTabsLayout = new javax.swing.GroupLayout(panelTabs);
-        panelTabs.setLayout(panelTabsLayout);
-        panelTabsLayout.setHorizontalGroup(
-            panelTabsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTabsLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(btnCanciones)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnArtistas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAlbumes)
-                .addContainerGap(125, Short.MAX_VALUE))
-        );
-        panelTabsLayout.setVerticalGroup(
-            panelTabsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTabsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelTabsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnArtistas)
-                    .addComponent(btnCanciones)
-                    .addComponent(btnAlbumes))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        panelHeader.add(panelTabs, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 49, -1, -1));
+        btnSubirCancion.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubirCancion.setText("Subir canción");
+        btnSubirCancion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSubirCancion.setContentAreaFilled(false);
+        panelHeader.add(btnSubirCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 90, 23));
 
         jPanel2.setBackground(new java.awt.Color(12, 12, 12));
 
@@ -129,7 +76,6 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         cbFecha.setBorder(null);
         cbFecha.setOpaque(true);
 
-        txtBuscarTabla.setEditable(false);
         txtBuscarTabla.setBackground(new java.awt.Color(28, 28, 28));
         txtBuscarTabla.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscarTabla.setText("Buscar en canciones...");
@@ -144,7 +90,7 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
                 .addComponent(lblOrdenar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(txtBuscarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -160,20 +106,21 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelHeader.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 102, 641, -1));
+        panelHeader.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 641, -1));
 
         scrollTabla.setBackground(new java.awt.Color(12, 12, 12));
         scrollTabla.setBorder(null);
 
-        tblCanciones.setBackground(new java.awt.Color(24, 24, 24));
-        tblCanciones.setForeground(new java.awt.Color(29, 185, 84));
+        tblCanciones.setBackground(new java.awt.Color(255, 255, 255));
+        tblCanciones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblCanciones.setForeground(new java.awt.Color(0, 0, 0));
         tblCanciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", "", "♡"},
-                {" ", "", "", "", "♥️"}
+                {null, "", "", "", "", "♡"},
+                {null, " ", "", "", "", "♥️"}
             },
             new String [] {
-                "Titulo", "Artitsta", "Album", "Duracion", "❤️"
+                "ID", "Titulo", "Artitsta", "Ruta", "Duracion", "Favorita"
             }
         ));
         tblCanciones.setGridColor(new java.awt.Color(0, 0, 0));
@@ -182,68 +129,31 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         tblCanciones.setShowGrid(false);
         scrollTabla.setViewportView(tblCanciones);
 
-        panelHeader.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 146, 641, 293));
+        panelHeader.add(scrollTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 670, 293));
 
-        btnEliminarPlaylist.setForeground(new java.awt.Color(255, 0, 0));
-        btnEliminarPlaylist.setText("Eliminar");
-        btnEliminarPlaylist.setBorderPainted(false);
-        btnEliminarPlaylist.setContentAreaFilled(false);
-        panelHeader.add(btnEliminarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
+        btnEliminarCancion.setForeground(new java.awt.Color(255, 0, 0));
+        btnEliminarCancion.setText("Eliminar");
+        btnEliminarCancion.setBorderPainted(false);
+        btnEliminarCancion.setContentAreaFilled(false);
+        panelHeader.add(btnEliminarCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
-        panelPrincipal.add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 710, 460));
+        panelPrincipal.add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 730, 460));
 
         panelSidebar.setBackground(new java.awt.Color(0, 0, 0));
         panelSidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtBuscarSidebar.setEditable(false);
-        txtBuscarSidebar.setBackground(new java.awt.Color(28, 28, 28));
-        txtBuscarSidebar.setForeground(new java.awt.Color(255, 255, 255));
-        txtBuscarSidebar.setText("Buscar...");
-        txtBuscarSidebar.setBorder(null);
-        panelSidebar.add(txtBuscarSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 54, 129, -1));
-
-        btnRecientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnRecientes.setText("Reproducciones recientes");
-        btnRecientes.setBorderPainted(false);
-        btnRecientes.setContentAreaFilled(false);
-        panelSidebar.add(btnRecientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 123, -1, -1));
 
         btnMiMusica.setForeground(new java.awt.Color(255, 255, 255));
         btnMiMusica.setText("Mi música");
         btnMiMusica.setBorderPainted(false);
         btnMiMusica.setContentAreaFilled(false);
-        panelSidebar.add(btnMiMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-        btnListas.setForeground(new java.awt.Color(255, 255, 255));
-        btnListas.setText("Listas de reproducción");
-        btnListas.setBorderPainted(false);
-        btnListas.setContentAreaFilled(false);
-        panelSidebar.add(btnListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 199, -1, -1));
-
-        btnEnCurso.setForeground(new java.awt.Color(255, 255, 255));
-        btnEnCurso.setText("Reproducción en curso");
-        btnEnCurso.setBorderPainted(false);
-        btnEnCurso.setContentAreaFilled(false);
-        panelSidebar.add(btnEnCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 158, -1, -1));
-
-        btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfiguracion.setText("Configuración");
-        btnConfiguracion.setBorderPainted(false);
-        btnConfiguracion.setContentAreaFilled(false);
-        panelSidebar.add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
-
-        btnNuevaLista.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevaLista.setText("+");
-        btnNuevaLista.setBorderPainted(false);
-        btnNuevaLista.setContentAreaFilled(false);
-        panelSidebar.add(btnNuevaLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 199, -1, -1));
+        panelSidebar.add(btnMiMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(0, 204, 51));
         lblLogo.setText("Speentify");
-        panelSidebar.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 11, -1, -1));
+        panelSidebar.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        panelPrincipal.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
+        panelPrincipal.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 460));
 
         panelPlayer.setBackground(new java.awt.Color(18, 18, 18));
         panelPlayer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -341,13 +251,13 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         btnTogSongFav.setFocusPainted(false);
         panelPlayer.add(btnTogSongFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 70, 30));
 
-        panelPrincipal.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 910, 100));
+        panelPrincipal.add(panelPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 870, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,45 +336,35 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
     }//GEN-LAST:event_btnNextActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlbumes;
-    private javax.swing.JButton btnArtistas;
-    private javax.swing.JButton btnCanciones;
-    private javax.swing.JButton btnConfiguracion;
-    public javax.swing.JButton btnEliminarPlaylist;
-    private javax.swing.JButton btnEnCurso;
-    private javax.swing.JButton btnListas;
+    public javax.swing.JButton btnEliminarCancion;
     public javax.swing.JButton btnMiMusica;
     public javax.swing.JButton btnNext;
-    private javax.swing.JButton btnNuevaLista;
     public javax.swing.JButton btnPrev;
-    private javax.swing.JButton btnRecientes;
     public javax.swing.JButton btnRepeat;
     public javax.swing.JButton btnShuffle;
-    private javax.swing.JButton btnSubirCancion1;
+    public javax.swing.JButton btnSubirCancion;
     public javax.swing.JToggleButton btnTogMute;
     public javax.swing.JToggleButton btnTogPlayPause;
     public javax.swing.JToggleButton btnTogSongFav;
-    private javax.swing.JComboBox<String> cbFecha;
+    public javax.swing.JComboBox<String> cbFecha;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JLabel lblArtist;
-    private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblOrdenar;
+    public javax.swing.JLabel lblLogo;
+    public javax.swing.JLabel lblOrdenar;
     public javax.swing.JLabel lblSongImage;
     public javax.swing.JLabel lblSongTitle;
     public javax.swing.JLabel lblTimeEnd;
     public javax.swing.JLabel lblTimeStart;
-    private javax.swing.JLabel lblTitulo;
+    public javax.swing.JLabel lblTitulo;
     public javax.swing.JLabel lblVolume;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelPlayer;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSidebar;
-    private javax.swing.JPanel panelTabs;
-    private javax.swing.JScrollPane scrollTabla;
+    public javax.swing.JScrollPane scrollTabla;
     public javax.swing.JSlider sliderProgress;
     public javax.swing.JSlider sliderVolume;
-    private javax.swing.JTable tblCanciones;
-    private javax.swing.JTextField txtBuscarSidebar;
-    private javax.swing.JTextField txtBuscarTabla;
+    public javax.swing.JTable tblCanciones;
+    public javax.swing.JTextField txtBuscarTabla;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,7 @@
 package Modelo;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +11,11 @@ public class CancionDAO {
     private final Crud crud = new Crud();
 
     private static final String COLLECTION = "canciones";
-
-    // =========================================================
-    // CONVERTIR CANCION -> DOCUMENT
-    // =========================================================
+    
+    public List<Document> listarDocumentos() {
+        return crud.readAll(COLLECTION);
+    }
+    
     private Document toDocument(Cancion c) {
 
         return new Document()
@@ -24,9 +26,6 @@ public class CancionDAO {
                 .append("cancionFav", c.isCancionFav());
     }
 
-    // =========================================================
-    // CONVERTIR DOCUMENT -> CANCION
-    // =========================================================
     private Cancion toCancion(Document d) {
 
         String titulo  = d.getString("titulo");
@@ -50,9 +49,6 @@ public class CancionDAO {
         );
     }
 
-    // =========================================================
-    // CREATE
-    // =========================================================
     public boolean guardarCancion(Cancion c) {
 
         // Evita duplicados
@@ -62,7 +58,10 @@ public class CancionDAO {
 
         return crud.create(COLLECTION, toDocument(c));
     }
-
+    
+    public boolean eliminarPorId(String id) {
+        return crud.delete(COLLECTION,new Document("_id",new ObjectId(id)));
+    }
     // =========================================================
     // READ ALL
     // =========================================================
