@@ -17,6 +17,7 @@ public class DeleteSongManager {
     private PlaylistUIManager playlistUI;
     private Controlador controlador;
     private CancionDAO dao;
+    
     public DeleteSongManager(FrmCanciones vista,Playlist<Cancion> playlist,PlaylistUIManager playlistUI,
             Controlador controlador
     ) {
@@ -31,10 +32,6 @@ public class DeleteSongManager {
 
         dao = new CancionDAO();
     }
-
-    // =====================================================
-    // ELIMINAR CANCION
-    // =====================================================
 
     public void eliminarCancion() {
 
@@ -63,23 +60,9 @@ public class DeleteSongManager {
             return;
         }
 
-        // =================================================
-        // DATOS TABLA
-        // =================================================
+        String id = vista.tblCanciones.getValueAt(fila, 0).toString();
 
-        String id =
-                vista.tblCanciones
-                        .getValueAt(fila, 0)
-                        .toString();
-
-        String ruta =
-                vista.tblCanciones
-                        .getValueAt(fila, 3)
-                        .toString();
-
-        // =================================================
-        // ELIMINAR DE MONGODB
-        // =================================================
+        String ruta = vista.tblCanciones.getValueAt(fila, 3).toString();
 
         boolean eliminadoBD =dao.eliminarPorId(id);
 
@@ -93,33 +76,19 @@ public class DeleteSongManager {
             return;
         }
 
-        // =================================================
-        // ELIMINAR ARCHIVO
-        // =================================================
         controlador.detenerYLiberar();
         eliminarArchivo(ruta);
-
-        // =================================================
-        // ELIMINAR PLAYLIST
-        // =================================================
 
         playlist.eliminar(
                 c -> c.getRuta().equals(ruta)
         );
 
-        // =================================================
-        // ELIMINAR FILA TABLA
-        // =================================================
 
-        DefaultTableModel modelo =
-                (DefaultTableModel)
-                        vista.tblCanciones.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) vista.tblCanciones.getModel();
 
         modelo.removeRow(fila);
 
-        // =================================================
-        // ACTUALIZAR JLIST
-        // =================================================
+
 
         if (playlistUI != null) {
             playlistUI.cargarLista();
@@ -139,70 +108,14 @@ public class DeleteSongManager {
                 return;
             }
             boolean eliminado = archivo.delete();
-
             if (eliminado) {
-
-                System.out.println(
-                        "Eliminado: "
-                        + archivo.getAbsolutePath()
-                );
-
+                System.out.println("Eliminado: "+ archivo.getAbsolutePath());
             } else {
-
-                System.out.println(
-                        "No se pudo eliminar"
-                );
+                System.out.println("No se pudo eliminar");
             }
 
         } catch (Exception e) {
-
-            System.out.println(
-                    "Error eliminando archivo: "
-                    + e.getMessage()
-            );
-        }
-    }
-    
-    private void eliminarFisico(String rutaCompleta) {
-
-        try {
-
-            File archivo =new File(rutaCompleta);
-
-            if (!archivo.exists()) {
-
-                System.out.println(
-                        "No existe: "
-                                + rutaCompleta
-                );
-
-                return;
-            }
-
-            boolean eliminado =
-                    archivo.delete();
-
-            if (eliminado) {
-
-                System.out.println(
-                        "Eliminado: "
-                                + rutaCompleta
-                );
-
-            } else {
-
-                System.out.println(
-                        "No se pudo eliminar: "
-                                + rutaCompleta
-                );
-            }
-
-        } catch (Exception e) {
-
-            System.out.println(
-                    "Error: "
-                            + e.getMessage()
-            );
+            System.out.println("Error eliminando archivo: "+ e.getMessage());
         }
     }
 }

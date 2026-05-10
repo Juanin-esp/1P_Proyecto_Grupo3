@@ -58,33 +58,20 @@ public class Controlador {
 
     private void reproducir(Cancion cancion) {
         Platform.runLater(() -> {
-            for (Consumer<Cancion> listener : listenersCancion) {
-                listener.accept(cancion);
-            }
-        });
-        Platform.runLater(() -> {
             try {
+                for (Consumer<Cancion> listener : listenersCancion) {
+                    listener.accept(cancion);
+                }
                 if (Validaciones.playerValido(player)) {
                     player.stop();
                     player.dispose();
                 }
                 File archivo = new File(cancion.getRuta());
-
-               if (!archivo.exists()) {
-
-                   System.out.println(
-                           "Archivo no encontrado: "
-                           + archivo.getAbsolutePath()
-                   );
-
-                   return;
-               }
-
-               Media media = new Media(
-                       archivo.toURI().toString()
-               );
-                
-                
+                if (!archivo.exists()) {
+                    System.out.println("Archivo no encontrado: "+ archivo.getAbsolutePath());
+                    return;
+                }
+                Media media = new Media(archivo.toURI().toString());
                 MediaPlayer nuevoPlayer = new MediaPlayer(media);
                 nuevoPlayer.setVolume(volumenActual);
                 nuevoPlayer.setOnEndOfMedia(this::siguiente);
@@ -93,8 +80,11 @@ public class Controlador {
                     System.out.println("Duracion: " + duracion);
                     nuevoPlayer.setVolume(volumenActual);
                 });
+
                 player = nuevoPlayer;
+
                 player.play();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
