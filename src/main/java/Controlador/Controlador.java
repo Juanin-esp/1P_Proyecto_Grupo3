@@ -10,7 +10,7 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import java.util.function.Consumer;   // ← nuevo import
+import java.util.function.Consumer;
 
 public class Controlador {
 

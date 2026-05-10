@@ -22,6 +22,7 @@ public class ControladorCanciones implements ActionListener {
     private VolumeManager volumeManager;
     private ProgressManager progressManager;
     private DeleteSongManager deleteSongManager;
+    private UploadSongManager uploadManager;
 
     public ControladorCanciones(FrmCanciones vista,Playlist<Cancion> playlist,Controlador controlador,PlaylistUIManager playlistUI) {
         this.vista = vista;
@@ -30,6 +31,7 @@ public class ControladorCanciones implements ActionListener {
         volumeManager =new VolumeManager(vista, controlador);
         progressManager =new ProgressManager(vista, controlador);
         deleteSongManager =new DeleteSongManager(vista,playlist,playlistUI,controlador);
+        uploadManager = new UploadSongManager(vista,playlist,playlistUI);
         progressManager.initSliderGUI();
         progressManager.initSlider();
         progressManager.initTimeline();
@@ -44,6 +46,7 @@ public class ControladorCanciones implements ActionListener {
     private void initEventos() {
         vista.btnMiMusica.addActionListener(this);
         vista.btnEliminarCancion.addActionListener(this);
+        vista.btnSubirCancion.addActionListener(this);
         vista.getBtnTogPlayPause().addActionListener(this);
         vista.getBtnNext().addActionListener(this);
         vista.getBtnPrev().addActionListener(this);
@@ -119,6 +122,9 @@ public class ControladorCanciones implements ActionListener {
         }
         if (e.getSource() == vista.btnEliminarCancion) {
             deleteSongManager.eliminarCancion();
+        }
+        if (e.getSource() == vista.btnSubirCancion) {
+            uploadManager.subirCancion();
         }
     }
 }
