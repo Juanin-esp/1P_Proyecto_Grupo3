@@ -24,7 +24,7 @@ public class FavoritoManager {
 
         boolean fav = cancion.isCancionFav();
         vista.btnTogSongFav.setSelected(fav);
-        vista.btnTogSongFav.setText(fav ? "❤️" : "🤍");
+        vista.btnTogSongFav.setText(fav ? "❤️" : "💔");
     }
 
     // Llamar cuando el usuario presiona btnTogSongFav

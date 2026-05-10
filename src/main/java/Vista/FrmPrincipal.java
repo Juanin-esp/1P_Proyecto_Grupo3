@@ -15,11 +15,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         panelSidebar = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
-        btnFrmMusica = new javax.swing.JButton();
+        btnMusicas = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnAbrirPlaylist = new javax.swing.JButton();
         btnCrearPlaylist = new javax.swing.JButton();
-        btnEliminarPlaylist = new javax.swing.JButton();
         txtBuscarCancion = new javax.swing.JTextField();
         panelContenido = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -58,35 +56,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblLogo.setForeground(new java.awt.Color(0, 204, 51));
         lblLogo.setText("Speetinfy");
 
-        btnFrmMusica.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnFrmMusica.setForeground(new java.awt.Color(255, 255, 255));
-        btnFrmMusica.setText("frmMusica");
-        btnFrmMusica.setBorderPainted(false);
-        btnFrmMusica.setContentAreaFilled(false);
+        btnMusicas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMusicas.setForeground(new java.awt.Color(255, 255, 255));
+        btnMusicas.setText("Musicas");
+        btnMusicas.setBorderPainted(false);
+        btnMusicas.setContentAreaFilled(false);
 
         btnBuscar.setForeground(new java.awt.Color(178, 178, 178));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
 
-        btnAbrirPlaylist.setForeground(new java.awt.Color(0, 204, 0));
-        btnAbrirPlaylist.setText("Abrir");
-        btnAbrirPlaylist.setBorderPainted(false);
-        btnAbrirPlaylist.setContentAreaFilled(false);
-
         btnCrearPlaylist.setForeground(new java.awt.Color(102, 255, 102));
         btnCrearPlaylist.setText("+ Nueva playlist");
         btnCrearPlaylist.setBorderPainted(false);
         btnCrearPlaylist.setContentAreaFilled(false);
 
-        btnEliminarPlaylist.setForeground(new java.awt.Color(255, 0, 0));
-        btnEliminarPlaylist.setText("Eliminar");
-        btnEliminarPlaylist.setBorderPainted(false);
-        btnEliminarPlaylist.setContentAreaFilled(false);
-
         txtBuscarCancion.setBackground(new java.awt.Color(28, 28, 28));
         txtBuscarCancion.setForeground(new java.awt.Color(255, 255, 255));
-        txtBuscarCancion.setText("asfs");
         txtBuscarCancion.setBorder(null);
 
         javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
@@ -96,40 +83,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panelSidebarLayout.createSequentialGroup()
                 .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSidebarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnAbrirPlaylist)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminarPlaylist))
-                    .addGroup(panelSidebarLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(lblLogo))
-                    .addGroup(panelSidebarLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCrearPlaylist)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnFrmMusica))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(btnBuscar)))
+                    .addGroup(panelSidebarLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(lblLogo))
+                    .addGroup(panelSidebarLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(btnMusicas)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         panelSidebarLayout.setVerticalGroup(
             panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSidebarLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFrmMusica)
-                .addGap(25, 25, 25)
+                .addGap(29, 29, 29)
                 .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBuscarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
+                .addComponent(btnMusicas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCrearPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAbrirPlaylist)
-                    .addComponent(btnEliminarPlaylist))
-                .addContainerGap())
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         jPanel3.add(panelSidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 440));
@@ -165,7 +145,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblBiblioteca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
-        lblBiblioteca.setText("TUS CANCIONES");
+        lblBiblioteca.setText("Lista de Canciones");
         jPanel2.add(lblBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 160, -1));
 
         listPlaylists.setBackground(new java.awt.Color(0, 0, 0));
@@ -339,12 +319,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirPlaylist;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnCrearPlaylist;
-    private javax.swing.JButton btnEliminarPlaylist;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnCrearPlaylist;
     public javax.swing.JButton btnFav;
-    private javax.swing.JButton btnFrmMusica;
+    public javax.swing.JButton btnMusicas;
     public javax.swing.JButton btnNext;
     public javax.swing.JButton btnPrev;
     public javax.swing.JButton btnRefresh;
@@ -359,7 +337,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public javax.swing.JLabel lblArtist;
     private javax.swing.JLabel lblBiblioteca;
     public javax.swing.JLabel lblFondo;
-    private javax.swing.JLabel lblLogo;
+    public javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblSaludo;
     public javax.swing.JLabel lblSongImage;
     public javax.swing.JLabel lblSongTitle;
@@ -372,6 +350,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelSidebar;
     public javax.swing.JSlider sliderProgress;
     public javax.swing.JSlider sliderVolume;
-    private javax.swing.JTextField txtBuscarCancion;
+    public javax.swing.JTextField txtBuscarCancion;
     // End of variables declaration//GEN-END:variables
 }

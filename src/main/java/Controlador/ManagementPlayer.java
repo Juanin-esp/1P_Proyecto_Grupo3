@@ -41,7 +41,7 @@ public class ManagementPlayer implements ActionListener {
         progressManager.initSlider();
         progressManager.initTimeline();
         volumeManager.init();
-
+        
         cargarLista();
     }
 
@@ -84,6 +84,8 @@ public class ManagementPlayer implements ActionListener {
         vista.btnTogSongFav.addActionListener(this);
         vista.btnFav.addActionListener(this);
         vista.btnRefresh.addActionListener(this);
+        vista.btnBuscar.addActionListener(this);
+        vista.txtBuscarCancion.addActionListener(e -> buscarCancion());
     }
 
     private void initLista() {
@@ -154,7 +156,40 @@ public class ManagementPlayer implements ActionListener {
         ((javax.swing.JScrollPane) vista.listPlaylists.getParent()
             .getParent()).getViewport().setOpaque(false);
     }
+    
+    private void buscarCancion() {
+        String texto = vista.txtBuscarCancion.getText().trim();
+        if (texto.isEmpty()) {
+            return;
+        }
+        var nodoEncontrado = playlist.buscar(c ->c.getTitulo().toLowerCase().contains(texto.toLowerCase())||
+            c.getArtista().toLowerCase().contains(texto.toLowerCase())
+        );
 
+        if (nodoEncontrado == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    vista,
+                    "Cancion no encontrada"
+            );
+
+            return;
+        }
+
+        Cancion cancion = nodoEncontrado.getDato();
+        controlador.reproducirDirecto(cancion);
+        seleccionarCancionLista(cancion);
+    }
+    private void seleccionarCancionLista(Cancion cancion) {
+        DefaultListModel<Cancion> modelo =(DefaultListModel<Cancion>)vista.listPlaylists.getModel();
+        for (int i = 0; i < modelo.size(); i++) {
+            if (modelo.getElementAt(i).equals(cancion)) {
+                vista.listPlaylists.setSelectedIndex(i);
+                vista.listPlaylists.ensureIndexIsVisible(i);
+                break;
+            }
+        }
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnTogPlayPause) {
@@ -189,6 +224,9 @@ public class ManagementPlayer implements ActionListener {
         
         if (e.getSource() == vista.btnRefresh) {
             cargarLista();
+        }
+        if (e.getSource() == vista.btnBuscar) {
+            buscarCancion();
         }
     }
 }
