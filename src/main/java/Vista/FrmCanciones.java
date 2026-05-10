@@ -57,7 +57,7 @@ public class FrmCanciones extends javax.swing.JFrame implements PlayerView {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Mi música");
-        panelHeader.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 17, -1, -1));
+        panelHeader.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         btnSubirCancion.setForeground(new java.awt.Color(255, 255, 255));
         btnSubirCancion.setText("Subir canción");

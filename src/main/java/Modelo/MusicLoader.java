@@ -6,30 +6,38 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
 import java.io.File;
-import java.net.URL;
 import java.util.List;
 
 public class MusicLoader {
 
+    private static final String MUSIC_FOLDER = "music";
+
     // =========================================================
-    // SINCRONIZA LA CARPETA /Musica CON MONGODB
+    // OBTENER CARPETA MUSIC
+    // =========================================================
+    public static File obtenerCarpetaMusica() {
+
+        File carpeta = new File(MUSIC_FOLDER);
+
+        if (!carpeta.exists()) {
+            carpeta.mkdirs();
+        }
+
+        return carpeta;
+    }
+
+    // =========================================================
+    // SINCRONIZAR MUSIC/ CON MONGODB
     // =========================================================
     public static void sincronizarConCarpeta() {
 
         try {
 
-            URL url = MusicLoader.class.getResource("/Musica");
+            File carpeta = obtenerCarpetaMusica();
 
-            if (url == null) {
-                System.out.println("Carpeta /Musica no encontrada");
-                return;
-            }
-
-            File carpeta = new File(url.toURI());
             File[] archivos = carpeta.listFiles();
 
             if (archivos == null) {
-                System.out.println("No hay archivos en la carpeta");
                 return;
             }
 
@@ -37,13 +45,12 @@ public class MusicLoader {
 
             for (File archivo : archivos) {
 
-                if (!archivo.getName().endsWith(".mp3")) {
+                if (!archivo.getName().toLowerCase().endsWith(".mp3")) {
                     continue;
                 }
 
-                String ruta = "/Musica/" + archivo.getName();
+                String ruta = "music/" + archivo.getName();
 
-                // Evita duplicados
                 if (dao.existePorRuta(ruta)) {
                     continue;
                 }
@@ -52,45 +59,55 @@ public class MusicLoader {
                 String artista = "Desconocido";
                 double duracion = 0;
 
-            try {
+                try {
 
-                AudioFile audioFile = AudioFileIO.read(archivo);
-                duracion = audioFile.getAudioHeader().getTrackLength();
-                Tag tag = audioFile.getTag();
+                    AudioFile audioFile = AudioFileIO.read(archivo);
 
-                if (tag != null) {
+                    duracion =
+                            audioFile.getAudioHeader()
+                                     .getTrackLength();
 
-                    String t = tag.getFirst(FieldKey.TITLE);
-                    String a = tag.getFirst(FieldKey.ARTIST);
+                    Tag tag = audioFile.getTag();
 
-                    if (t != null && !t.isBlank()) {
-                        titulo = t;
+                    if (tag != null) {
+
+                        String t =
+                                tag.getFirst(FieldKey.TITLE);
+
+                        String a =
+                                tag.getFirst(FieldKey.ARTIST);
+
+                        if (t != null && !t.isBlank()) {
+                            titulo = t;
+                        }
+
+                        if (a != null && !a.isBlank()) {
+                            artista = a;
+                        }
                     }
 
-                    if (a != null && !a.isBlank()) {
-                        artista = a;
-                    }
+                } catch (Exception ex) {
+
+                    System.out.println(
+                            "Error leyendo metadata: "
+                            + archivo.getName()
+                    );
                 }
 
-            } catch (Exception metaEx) {
-
-                System.out.println(
-                        "No se pudieron leer metadatos de: "
-                        + archivo.getName()
+                Cancion c = new Cancion(
+                        titulo,
+                        artista,
+                        ruta,
+                        duracion,
+                        false
                 );
-            }
-            
-            Cancion c = new Cancion(
-                    titulo,
-                    artista,
-                    ruta,
-                    duracion,
-                    false
-            );
 
                 dao.guardarCancion(c);
 
-                System.out.println("Canción agregada: " + titulo);
+                System.out.println(
+                        "Canción agregada: "
+                        + titulo
+                );
             }
 
         } catch (Exception e) {
@@ -99,21 +116,22 @@ public class MusicLoader {
     }
 
     // =========================================================
-    // CARGA LA PLAYLIST DESDE MONGODB
+    // CARGAR PLAYLIST DESDE MONGODB
     // =========================================================
-    public static void cargarDesdeBD(Playlist<Cancion> playlist) {
+    public static void cargarDesdeBD(
+            Playlist<Cancion> playlist
+    ) {
 
         try {
 
             CancionDAO dao = new CancionDAO();
 
-            List<Cancion> canciones = dao.listarTodas();
+            List<Cancion> canciones =
+                    dao.listarTodas();
 
             for (Cancion c : canciones) {
                 playlist.insertar(c);
             }
-
-            System.out.println("Canciones cargadas desde MongoDB");
 
         } catch (Exception e) {
             e.printStackTrace();

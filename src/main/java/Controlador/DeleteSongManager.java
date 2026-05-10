@@ -132,39 +132,33 @@ public class DeleteSongManager {
     }
 
     private void eliminarArchivo(String ruta) {
-
         try {
+            File archivo = new File(ruta);
+            if (!archivo.exists()) {
+                System.out.println("No existe: " + archivo.getAbsolutePath());
+                return;
+            }
+            boolean eliminado = archivo.delete();
 
-            String proyecto =
-                    System.getProperty("user.dir");
+            if (eliminado) {
 
-            // ============================================
-            // SRC MAIN RESOURCES
-            // ============================================
+                System.out.println(
+                        "Eliminado: "
+                        + archivo.getAbsolutePath()
+                );
 
-            String rutaResources =
-                    proyecto
-                    + "/src/main/resources"
-                    + ruta;
+            } else {
 
-            eliminarFisico(rutaResources);
-
-            // ============================================
-            // TARGET CLASSES
-            // ============================================
-
-            String rutaTarget =
-                    proyecto
-                    + "/target/classes"
-                    + ruta;
-
-            eliminarFisico(rutaTarget);
+                System.out.println(
+                        "No se pudo eliminar"
+                );
+            }
 
         } catch (Exception e) {
 
             System.out.println(
                     "Error eliminando archivo: "
-                            + e.getMessage()
+                    + e.getMessage()
             );
         }
     }

@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Cancion;
 import Modelo.Playlist;
 import Modelo.Validaciones;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,16 +68,23 @@ public class Controlador {
                     player.stop();
                     player.dispose();
                 }
+                File archivo = new File(cancion.getRuta());
 
-                String recurso = cancion.getRuta();
-                var url = getClass().getResource(recurso);
+               if (!archivo.exists()) {
 
-                if (!Validaciones.recursoValido(url)) {
-                    System.out.println("Archivo no encontrado: " + recurso);
-                    return;
-                }
+                   System.out.println(
+                           "Archivo no encontrado: "
+                           + archivo.getAbsolutePath()
+                   );
 
-                Media media = new Media(url.toExternalForm());
+                   return;
+               }
+
+               Media media = new Media(
+                       archivo.toURI().toString()
+               );
+                
+                
                 MediaPlayer nuevoPlayer = new MediaPlayer(media);
                 nuevoPlayer.setVolume(volumenActual);
                 nuevoPlayer.setOnEndOfMedia(this::siguiente);
