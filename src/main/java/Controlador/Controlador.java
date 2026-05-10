@@ -3,6 +3,9 @@ package Controlador;
 import Modelo.Cancion;
 import Modelo.Playlist;
 import Modelo.Validaciones;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -17,17 +20,22 @@ public class Controlador {
     private double volumenActual = 0.5;
 
     // ── NUEVO: callback que avisa a la UI qué canción suena ──
-    private Consumer<Cancion> onCancionCambiada;
+    private List<Consumer<Cancion>>listenersCancion =new ArrayList<>();
 
     public Controlador(Playlist<Cancion> playlist) {
         this.playlist = playlist;
     }
-
-    // ── NUEVO: setter del callback ──
-    public void setOnCancionCambiada(Consumer<Cancion> callback) {
-        this.onCancionCambiada = callback;
+    
+    public void addOnCancionCambiada(Consumer<Cancion> listener) {
+        listenersCancion.add(listener);
     }
-
+    public void sincronizarVistaActual() {
+        Cancion actual = getCancionActual();
+        if (actual == null) return;
+        for (Consumer<Cancion> listener : listenersCancion) {
+            listener.accept(actual);
+        }
+    }
     public MediaPlayer getPlayer() { return player; }
     public Cancion getCancionActual() { return playlist.getActual(); }
 
@@ -48,15 +56,16 @@ public class Controlador {
     }
 
     private void reproducir(Cancion cancion) {
-        // ── NUEVO: notificar a la UI antes de reproducir ──
-        if (onCancionCambiada != null) {
-            Platform.runLater(() -> onCancionCambiada.accept(cancion));
-        }
-
+        Platform.runLater(() -> {
+            for (Consumer<Cancion> listener : listenersCancion) {
+                listener.accept(cancion);
+            }
+        });
         Platform.runLater(() -> {
             try {
                 if (Validaciones.playerValido(player)) {
                     player.stop();
+                    player.dispose();
                 }
 
                 String recurso = cancion.getRuta();

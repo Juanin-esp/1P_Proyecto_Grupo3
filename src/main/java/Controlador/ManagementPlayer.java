@@ -22,27 +22,28 @@ public class ManagementPlayer implements ActionListener {
     private CancionCellRenderer renderer;
     
     private Cancion cancionSeleccionada;
-
-    public ManagementPlayer(FrmPrincipal vista, Playlist<Cancion> playlist) {
+    
+    private boolean actualizandoLista = false;
+    
+    public ManagementPlayer(FrmPrincipal vista,Playlist<Cancion> playlist,Controlador controlador){
         this.vista    = vista;
         this.playlist = playlist;
-
-        controlador     = new Controlador(playlist);
+        this.controlador = controlador;
         volumeManager   = new VolumeManager(vista, controlador);
         progressManager = new ProgressManager(vista, controlador);
         favoritoManager = new FavoritoManager(vista, playlist);
 
         // ── NUEVO: el Controlador avisa a la UI cuando cambia de canción ──
-        controlador.setOnCancionCambiada(this::actualizarUI);
-
+        controlador.addOnCancionCambiada(this::actualizarUI);
         initBotones();
         initLista();
         progressManager.initSliderGUI();
         progressManager.initSlider();
         progressManager.initTimeline();
         volumeManager.init();
-        
+        volumeManager.sincronizarUI();
         cargarLista();
+        controlador.sincronizarVistaActual();
     }
 
     // ── Punto único de sincronización de la UI ──────────────────────────────
@@ -57,9 +58,8 @@ public class ManagementPlayer implements ActionListener {
             vista.lblArtist.setText(cancion.getArtista());
 
             // Resaltar en el JList
-            DefaultListModel<Cancion> modelo =
-                (DefaultListModel<Cancion>) vista.listPlaylists.getModel();
-
+            DefaultListModel<Cancion> modelo = (DefaultListModel<Cancion>) vista.listPlaylists.getModel();
+            actualizandoLista = true;
             for (int i = 0; i < modelo.getSize(); i++) {
                 if (modelo.getElementAt(i).equals(cancion)) {
                     vista.listPlaylists.setSelectedIndex(i);
@@ -67,6 +67,8 @@ public class ManagementPlayer implements ActionListener {
                     break;
                 }
             }
+
+            actualizandoLista = false;
 
             // Botón favorito
             favoritoManager.sincronizarBoton(cancion);
@@ -85,6 +87,7 @@ public class ManagementPlayer implements ActionListener {
         vista.btnFav.addActionListener(this);
         vista.btnRefresh.addActionListener(this);
         vista.btnBuscar.addActionListener(this);
+        vista.btnMusicas.addActionListener(this);
         vista.txtBuscarCancion.addActionListener(e -> buscarCancion());
     }
 
@@ -119,8 +122,9 @@ public class ManagementPlayer implements ActionListener {
     }
     
     private void onSeleccionCancion(javax.swing.event.ListSelectionEvent e) {
-        if (e.getValueIsAdjusting()) return;
-
+        if (e.getValueIsAdjusting() || actualizandoLista) {
+            return;
+        }
         Object obj = vista.listPlaylists.getSelectedValue();
         if (!(obj instanceof Cancion)) return;
 
@@ -189,6 +193,12 @@ public class ManagementPlayer implements ActionListener {
             }
         }
     }
+    private void abrirFrmCanciones() {
+        Vista.FrmCanciones frm =new Vista.FrmCanciones();
+        new ControladorCanciones(frm,playlist,controlador);
+        frm.setVisible(true);
+        vista.dispose();
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -227,6 +237,9 @@ public class ManagementPlayer implements ActionListener {
         }
         if (e.getSource() == vista.btnBuscar) {
             buscarCancion();
+        }
+        if (e.getSource() == vista.btnMusicas) {
+            abrirFrmCanciones();
         }
     }
 }

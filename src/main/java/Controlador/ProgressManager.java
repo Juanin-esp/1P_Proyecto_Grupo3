@@ -1,6 +1,6 @@
 package Controlador;
 
-import Vista.FrmPrincipal;
+import Vista.PlayerView;
 import Vista.SliderModerno;
 import Modelo.Validaciones;
 import javafx.animation.KeyFrame;
@@ -9,25 +9,25 @@ import javafx.util.Duration;
 
 public class ProgressManager {
 
-    private FrmPrincipal vista;
+    private PlayerView vista;
     private Controlador controlador;
     private Timeline timeline;
 
-    public ProgressManager(FrmPrincipal vista, Controlador controlador) {
+    public ProgressManager(PlayerView vista, Controlador controlador) {
         this.vista = vista;
         this.controlador = controlador;
     }
 
     public void initSliderGUI() {
-        SliderModerno.aplicar(vista.sliderProgress, SliderModerno.Tipo.PROGRESO);
-        SliderModerno.aplicar(vista.sliderVolume,   SliderModerno.Tipo.VOLUMEN);
+        SliderModerno.aplicar(vista.getSliderProgress(), SliderModerno.Tipo.PROGRESO);
+        SliderModerno.aplicar(vista.getSliderVolume(),   SliderModerno.Tipo.VOLUMEN);
     }
 
     public void initSlider() {
-        vista.sliderProgress.setMinimum(0);
-        vista.sliderProgress.setMaximum(100);
-        vista.sliderProgress.setValue(0);
-        vista.sliderProgress.addChangeListener(e -> onSliderChange());
+        vista.getSliderProgress().setMinimum(0);
+        vista.getSliderProgress().setMaximum(100);
+        vista.getSliderProgress().setValue(0);
+        vista.getSliderProgress().addChangeListener(e -> onSliderChange());
     }
 
     public void initTimeline() {
@@ -39,13 +39,13 @@ public class ProgressManager {
     }
 
     private void onSliderChange() {
-        if (!vista.sliderProgress.getValueIsAdjusting()) return;
+        if (!vista.getSliderProgress().getValueIsAdjusting()) return;
 
         var player = controlador.getPlayer();
         if (!Validaciones.duracionValida(player)) return;
 
         double total = player.getTotalDuration().toSeconds();
-        double porcentaje = vista.sliderProgress.getValue() / 100.0;
+        double porcentaje = vista.getSliderProgress().getValue() / 100.0;
         player.seek(Duration.seconds(total * porcentaje));
     }
 
@@ -56,8 +56,8 @@ public class ProgressManager {
         double total  = player.getTotalDuration().toSeconds();
         double actual = player.getCurrentTime().toSeconds();
 
-        vista.sliderProgress.setValue((int)((actual / total) * 100));
-        vista.lblTimeStart.setText(Validaciones.formatTime(actual));
-        vista.lblTimeEnd.setText(Validaciones.formatTime(total));
+        vista.getSliderProgress().setValue((int)((actual / total) * 100));
+        vista.getLblTimeStart().setText(Validaciones.formatTime(actual));
+        vista.getLblTimeEnd().setText(Validaciones.formatTime(total));
     }
 }

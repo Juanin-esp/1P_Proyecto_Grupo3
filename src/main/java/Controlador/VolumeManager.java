@@ -1,28 +1,28 @@
 package Controlador;
 
-import Vista.FrmPrincipal;
+import Vista.PlayerView;
 
 public class VolumeManager {
 
-    private FrmPrincipal vista;
+    private PlayerView vista;
     private Controlador controlador;
 
-    public VolumeManager(FrmPrincipal vista, Controlador controlador) {
+    public VolumeManager(PlayerView vista,Controlador controlador) {
         this.vista = vista;
         this.controlador = controlador;
     }
 
     public void init() {
-        vista.sliderVolume.setMinimum(0);
-        vista.sliderVolume.setMaximum(100);
-        vista.sliderVolume.setValue((int)(controlador.getVolumenActual() * 100));
-        vista.sliderVolume.addChangeListener(e -> onVolumeChange());
+        vista.getSliderVolume().setMinimum(0);
+        vista.getSliderVolume().setMaximum(100);
+        vista.getSliderVolume().setValue((int)(controlador.getVolumenActual() * 100));
+        vista.getSliderVolume().addChangeListener(e -> onVolumeChange());
     }
 
     private void onVolumeChange() {
-        int valor = vista.sliderVolume.getValue();
+        int valor = vista.getSliderVolume().getValue();
         double volumen = valor / 100.0;
-        vista.lblVolume.setText(valor + "");
+        vista.getLblVolume().setText(valor + "");
 
         if (controlador.isMute() && volumen > 0) {
             controlador.desmutearDirecto(volumen);
@@ -30,20 +30,29 @@ public class VolumeManager {
             controlador.setVolumen(volumen);
         }
         boolean mute = volumen == 0;
-        vista.btnTogMute.setSelected(mute);
-        vista.btnTogMute.setText(mute ? "🔇" : "🔊");
+        vista.getBtnTogMute().setSelected(mute);
+        vista.getBtnTogMute().setText(mute ? "🔇" : "🔊");
     }
 
     public void toggleMute() {
-        boolean mute =vista.btnTogMute.isSelected();
+        boolean mute =vista.getBtnTogMute().isSelected();
         if (mute) {
             controlador.toggleMute();
-            vista.btnTogMute.setText("🔇");
+            vista.getBtnTogMute().setText("🔇");
         } else {
             controlador.toggleMute();
-            vista.btnTogMute.setText("🔊");
+            vista.getBtnTogMute().setText("🔊");
         }
         int valor = (int)(controlador.getVolumenActual() * 100);
-        vista.sliderVolume.setValue(valor);
+        vista.getSliderVolume().setValue(valor);
+    }
+    
+    public void sincronizarUI() {
+        int valor = (int)(controlador.getVolumenActual() * 100);
+        vista.getSliderVolume().setValue(valor);
+        vista.getLblVolume().setText(valor + "");
+        boolean mute = controlador.isMute();
+        vista.getBtnTogMute().setSelected(mute);
+        vista.getBtnTogMute().setText(mute ? "🔇" : "🔊");
     }
 }
