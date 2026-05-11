@@ -74,6 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnMostrarPass.setContentAreaFilled(false);
         panelLogin.add(btnMostrarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
+        chkRecordar.setBackground(new java.awt.Color(12, 12, 12));
         chkRecordar.setForeground(new java.awt.Color(255, 255, 255));
         chkRecordar.setText("Recordarme");
         panelLogin.add(chkRecordar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
