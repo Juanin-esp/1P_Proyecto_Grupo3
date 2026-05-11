@@ -5,6 +5,9 @@ import Modelo.dominio.Cancion;
 import Modelo.dominio.ListaReproduccion;
 import Vista.CancionCellRenderer;
 import Vista.FrmPrincipal;
+import Vista.ScrollModerno;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 
 import javax.swing.DefaultListModel;
 
@@ -28,6 +31,7 @@ public class GestorUIPlaylist {
         this.controlador = controlador;
 
         initLista();
+        ScrollModerno.aplicar(vista.ScrollPlayList);
         cargarLista();
     }
 
@@ -47,7 +51,12 @@ public class GestorUIPlaylist {
 
             controlador.reproducirDirecto((Cancion) obj);
         });
-
+        vista.listPlaylists.setOpaque(false);
+        vista.listPlaylists.setBackground(new Color(0, 0, 0, 0));
+        vista.ScrollPlayList.setOpaque(false);
+        vista.ScrollPlayList.getViewport().setOpaque(false);
+        vista.ScrollPlayList.getViewport().setBackground(new Color(0, 0, 0, 0));
+        vista.ScrollPlayList.setBorder(BorderFactory.createEmptyBorder());
         initHover();
     }
 

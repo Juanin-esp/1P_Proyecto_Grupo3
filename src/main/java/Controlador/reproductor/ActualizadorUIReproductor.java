@@ -35,7 +35,7 @@ public class ActualizadorUIReproductor {
             vista.btnTogPlayPause.setText("⏸");
             boolean fav = cancion.isCancionFav();
             vista.getBtnTogSongFav().setSelected(fav);
-            vista.getBtnTogSongFav().setText(fav ? "❤️": "🤍");
+            vista.getBtnTogSongFav().setText(fav ? "❤️": "💔");
             playlistUI.seleccionarCancion(cancion);
             vista.getBtnTogSongFav().setSelected(cancion.isCancionFav());
         });

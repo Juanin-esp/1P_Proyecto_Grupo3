@@ -38,7 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements VistaReproductor
         lblSaludo = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
         lblBiblioteca = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollPlayList = new javax.swing.JScrollPane();
         listPlaylists = new javax.swing.JList();
         txtBuscarCancion = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -258,9 +258,9 @@ public class FrmPrincipal extends javax.swing.JFrame implements VistaReproductor
         });
         listPlaylists.setSelectionBackground(new java.awt.Color(0, 0, 0));
         listPlaylists.setSelectionForeground(new java.awt.Color(51, 255, 51));
-        jScrollPane1.setViewportView(listPlaylists);
+        ScrollPlayList.setViewportView(listPlaylists);
 
-        panelContenido.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 770, 310));
+        panelContenido.add(ScrollPlayList, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 770, 310));
 
         txtBuscarCancion.setBackground(new java.awt.Color(28, 28, 28));
         txtBuscarCancion.setForeground(new java.awt.Color(255, 255, 255));
@@ -374,6 +374,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements VistaReproductor
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JScrollPane ScrollPlayList;
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnFav;
     public javax.swing.JButton btnMusicas;
@@ -386,7 +387,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements VistaReproductor
     public javax.swing.JToggleButton btnTogShuffle;
     public javax.swing.JToggleButton btnTogSongFav;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel lblArtist;
     private javax.swing.JLabel lblBiblioteca;
     public javax.swing.JLabel lblFondo;

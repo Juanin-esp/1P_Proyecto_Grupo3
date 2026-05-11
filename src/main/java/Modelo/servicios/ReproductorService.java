@@ -202,21 +202,14 @@ public class ReproductorService {
     }
     
     public void toggleShuffle() {
-
         shuffle = !shuffle;
-
-        System.out.println(
-                "Shuffle: " + shuffle
+        System.out.println("Shuffle: " + shuffle
         );
     }
 
     public void toggleRepeat() {
-
         repeat = !repeat;
-
-        System.out.println(
-                "Repeat: " + repeat
-        );
+        System.out.println("Repeat: " + repeat);
     }
     public void buscarYReproducir(String titulo) {
         var nodo = playlist.buscar(c -> c.getTitulo().equalsIgnoreCase(titulo));
@@ -229,24 +222,16 @@ public class ReproductorService {
     }
     
     public void detenerYLiberar() {
-
         try {
-
             if (player != null) {
-
                 player.stop();
-
                 player.dispose();
-
                 player = null;
             }
 
         } catch (Exception e) {
 
-            System.out.println(
-                    "Error liberando MediaPlayer: "
-                            + e.getMessage()
-            );
+            System.out.println("Error liberando MediaPlayer: "+ e.getMessage());
         }
     }
 }

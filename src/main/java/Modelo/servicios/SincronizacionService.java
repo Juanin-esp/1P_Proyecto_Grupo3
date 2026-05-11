@@ -55,25 +55,14 @@ public class SincronizacionService {
                 String titulo = "Sin título";
                 String artista = "Desconocido";
                 double duracion = 0;
-
                 try {
-
                     AudioFile audioFile = AudioFileIO.read(archivo);
-
-                    duracion =
-                            audioFile.getAudioHeader()
-                                     .getTrackLength();
-
+                    duracion = audioFile.getAudioHeader().getTrackLength();
                     Tag tag = audioFile.getTag();
 
                     if (tag != null) {
-
-                        String t =
-                                tag.getFirst(FieldKey.TITLE);
-
-                        String a =
-                                tag.getFirst(FieldKey.ARTIST);
-
+                        String t = tag.getFirst(FieldKey.TITLE);
+                        String a = tag.getFirst(FieldKey.ARTIST);
                         if (t != null && !t.isBlank()) {
                             titulo = t;
                         }
@@ -85,26 +74,11 @@ public class SincronizacionService {
 
                 } catch (Exception ex) {
 
-                    System.out.println(
-                            "Error leyendo metadata: "
-                            + archivo.getName()
-                    );
+                    System.out.println("Error leyendo metadata: "+ archivo.getName());
                 }
-
-                Cancion c = new Cancion(
-                        titulo,
-                        artista,
-                        ruta,
-                        duracion,
-                        false
-                );
-
+                Cancion c = new Cancion(titulo,artista,ruta,duracion,false);
                 dao.guardarCancion(c);
-
-                System.out.println(
-                        "Canción agregada: "
-                        + titulo
-                );
+                System.out.println("Canción agregada: "+ titulo);
             }
 
         } catch (Exception e) {
@@ -112,16 +86,10 @@ public class SincronizacionService {
         }
     }
 
-    public static void cargarDesdeBD(
-            ListaReproduccion<Cancion> playlist
-    ) {
-
+    public static void cargarDesdeBD(ListaReproduccion<Cancion> playlist) {
         try {
-
             CancionDAO dao = new CancionDAO();
-
-            List<Cancion> canciones =
-                    dao.listarTodas();
+            List<Cancion> canciones = dao.listarTodas();
 
             for (Cancion c : canciones) {
                 playlist.insertar(c);

@@ -108,11 +108,7 @@ public class GestorReproductor implements ActionListener {
                 vista.btnTogSongFav.setSelected(
                         actual.isCancionFav()
                 );
-                vista.btnTogSongFav.setText(
-                        actual.isCancionFav()
-                                ? "❤️"
-                                : "💔"
-                );
+                vista.btnTogSongFav.setText(actual.isCancionFav() ? "❤️" : "💔");
             }
         }
         if (source == vista.btnFav) {

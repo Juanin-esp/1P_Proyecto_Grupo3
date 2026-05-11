@@ -14,6 +14,8 @@ import Modelo.dominio.ListaReproduccion;
 
 import Vista.FrmCanciones;
 import Vista.FrmPrincipal;
+import Vista.ScrollModerno;
+import Vista.TablaModerna;
 
 import org.bson.Document;
 import javax.swing.table.DefaultTableModel;
@@ -51,6 +53,8 @@ public class ControladorCanciones implements ActionListener {
         controlador.sincronizarVistaActual();
         sincronizarToggles();
         cargarTablaCanciones();
+        ScrollModerno.aplicar(vista.scrollTabla);
+        TablaModerna.aplicar(vista.tblCanciones);
         initEventos();
     }
 

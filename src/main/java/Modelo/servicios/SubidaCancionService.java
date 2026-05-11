@@ -49,70 +49,43 @@ public class SubidaCancionService {
 
         try {
 
-            JFileChooser chooser =
-                    new JFileChooser();
+            JFileChooser chooser =new JFileChooser();
 
-            chooser.setDialogTitle(
-                    "Seleccionar canción"
-            );
+            chooser.setDialogTitle("Seleccionar canción");
 
-            chooser.setFileFilter(
-                    new FileNameExtensionFilter(
-                            "Archivos MP3",
-                            "mp3"
-                    )
-            );
+            chooser.setFileFilter(new FileNameExtensionFilter("Archivos MP3","mp3"));
 
-            int resultado =
-                    chooser.showOpenDialog(vista);
+            int resultado = chooser.showOpenDialog(vista);
 
             if (resultado != JFileChooser.APPROVE_OPTION) {
                 return;
             }
 
             File archivoOriginal = chooser.getSelectedFile();
-
             File carpetaMusic = SincronizacionService.obtenerCarpetaMusica();
+            String nombreArchivo = archivoOriginal.getName();
 
-            String nombreArchivo =
-                    archivoOriginal.getName();
-
-            File archivoDestino =
-                    new File(
-                            carpetaMusic,
-                            nombreArchivo
-                    );
+            File archivoDestino = new File(carpetaMusic,nombreArchivo);
 
             if (archivoDestino.exists()) {
-
-                JOptionPane.showMessageDialog(
-                        vista,
-                        "La canción ya existe"
-                );
-
+                JOptionPane.showMessageDialog(vista,"La canción ya existe");
                 return;
             }
 
             Files.copy(archivoOriginal.toPath(),archivoDestino.toPath(),StandardCopyOption.REPLACE_EXISTING);
 
             String titulo = "Sin título";
-
             String artista = "Desconocido";
 
             double duracion = 0;
 
             try {
 
-                AudioFile audioFile =
-                        AudioFileIO.read(archivoDestino);
+                AudioFile audioFile =AudioFileIO.read(archivoDestino);
 
-                duracion =
-                        audioFile
-                                .getAudioHeader()
-                                .getTrackLength();
+                duracion = audioFile.getAudioHeader().getTrackLength();
 
-                Tag tag =
-                        audioFile.getTag();
+                Tag tag = audioFile.getTag();
 
                 if (tag != null) {
 
@@ -133,33 +106,17 @@ public class SubidaCancionService {
 
             } catch (Exception ex) {
 
-                System.out.println(
-                        "Error leyendo metadata"
-                );
+                System.out.println("Error leyendo metadata");
             }
 
-            String ruta =
-                    "music/" + nombreArchivo;
+            String ruta = "music/" + nombreArchivo;
 
-            Cancion cancion =
-                    new Cancion(
-                            titulo,
-                            artista,
-                            ruta,
-                            duracion,
-                            false
-                    );
+            Cancion cancion = new Cancion(titulo,artista,ruta,duracion,false);
 
-            boolean guardado =
-                    dao.guardarCancion(cancion);
+            boolean guardado = dao.guardarCancion(cancion);
 
             if (!guardado) {
-
-                JOptionPane.showMessageDialog(
-                        vista,
-                        "Error guardando canción"
-                );
-
+                JOptionPane.showMessageDialog(vista,"Error guardando canción");
                 return;
             }
 

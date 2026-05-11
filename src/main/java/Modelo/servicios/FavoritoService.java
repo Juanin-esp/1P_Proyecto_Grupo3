@@ -17,30 +17,13 @@ public class FavoritoService {
 
         this.playlist = playlist;
     }
-
-    // =====================================================
-    // TOGGLE FAVORITO
-    // =====================================================
-
     public void toggleFavorito(Cancion cancion) {
-
         if (cancion == null) {
             return;
         }
-
-        boolean nuevoEstado =
-                !cancion.isCancionFav();
-
-        cancion.setCancionFav(
-                nuevoEstado
-        );
-
+        boolean nuevoEstado = !cancion.isCancionFav();
+        cancion.setCancionFav(nuevoEstado);
         dao.actualizarFavorito(cancion);
-
-        System.out.println(
-                cancion.getTitulo()
-                + " favorita: "
-                + nuevoEstado
-        );
+        System.out.println(cancion.getTitulo()+ " favorita: "+ nuevoEstado);
     }
 }
